@@ -1,10 +1,5 @@
 /***
  * @author Étienne Germain
- * @file Robot.h
+ * @file BrasPropulsion.h
  * @date 17 janvier 2023
 ***/
-
-class Robot
-{
-
-};
