@@ -4,7 +4,24 @@
  * @date 17 janvier 2023
 ***/
 
-class Moteur
-{
+#ifndef ELECTROAIMANT_H
+#define ELECTROAIMANT_H
 
+class Electroaimant
+{
+private:
+
+    bool etat;
+    int pin;
+
+public:
+
+    Electroaimant(int pint);
+
+    void activer();
+    void desactiver();
+    bool getEtat();
+    int getPin();
 };
+
+#endif
