@@ -1,0 +1,1 @@
+Ce dossier contient le schéma d'architecture du projet. Ce schéma décrit les relations entre les différents composants du projet. Le schéma électrique du montage décrit quant à lui les branchements et le circuit d'activation des électroaimants.
