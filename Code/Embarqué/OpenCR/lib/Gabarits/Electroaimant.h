@@ -16,12 +16,12 @@ private:
 
 public:
 
-    Electroaimant(int pint);
+    Electroaimant(int pin_);
 
-    void activer();
-    void desactiver();
-    bool getEtat();
-    int getPin();
+    virtual void activer()=0;
+    virtual void desactiver()=0;
+    virtual bool getEtat()=0;
+    virtual int getPin()=0;
 };
 
 #endif
