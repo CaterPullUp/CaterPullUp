@@ -1,5 +1,11 @@
 # Description du code de l'OpenCR
-## Classe ElectroCPU
+## Les électroaimants
+### Electroaimant.h
+Le fichier commence par inclure des directives de préprocesseur pour éviter les problèmes de double inclusion. Ensuite, la classe Electroaimant est définie avec des attributs protégés "etat" et "pin".
+
+Le constructeur de la classe prend un argument "pin_" et initialise la variable "pin" avec cette valeur. La classe a également un destructeur virtuel.
+La classe contient plusieurs fonctions virtuelles pures qui permettent de manipuler l'électro-aimant. Ces fonctions incluent "**setEtat**", "**getEtat**" et "**getPin**". Les fonctions "**setEtat**" et "**getEtat**" permettent respectivement de définir et d'obtenir l'état de l'électro-aimant. La fonction "getPin" permet d'obtenir le numéro de pin associé à l'électro-aimant. La classe a également deux autres fonctions virtuelles pures, "**activer**" et "**desactiver**", qui permettent d'activer ou de désactiver l'électro-aimant.
+
 ### ElectroCPU.h
 
 Le fichier commence par inclure le fichier "Electroaimant.h" et la bibliothèque "Arduino.h". La classe ElectroCPU hérite de la classe abstraite Electroaimant, ce qui signifie qu'elle hérite toutes les fonctions de la classe Electroaimant. La classe Electroaimant se trouve dans le gabarit qui est réutilisable si le projet est réutilisé dans un autre objectif.
