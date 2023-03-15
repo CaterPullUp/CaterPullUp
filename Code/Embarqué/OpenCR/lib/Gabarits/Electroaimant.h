@@ -9,7 +9,7 @@
 
 class Electroaimant
 {
-private:
+protected:
 
     bool etat;
     int pin;
@@ -17,11 +17,16 @@ private:
 public:
 
     Electroaimant(int pin_);
+    virtual ~Electroaimant();
+
+    void setEtat(bool etat_)=0;
+    bool getEtat() const=0;
+    int getPin() const=0;
 
     virtual void activer()=0;
     virtual void desactiver()=0;
-    virtual bool getEtat()=0;
     virtual int getPin()=0;
+    virtual bool& getEtat()=0;
 };
 
 #endif
