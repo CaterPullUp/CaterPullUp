@@ -4,16 +4,22 @@
  * @date 29 janvier 2023
 ***/
 
-
 #ifndef ELECTROCPU_H
 #define ELECTROCPU_H
+
+#if defined(ARDUINO_OpenCR)
 #include <Arduino.h>
+#else
+#define digitalWrite(A,B)
+#define digitalRead(A)
+#define pinMode(A,B)
+#endif
+
 #include "Electroaimant.h"
 
 class ElectroCPU : public Electroaimant
 {
 private:
-
 
 public:
 
@@ -21,11 +27,11 @@ public:
     ElectroCPU(int pin_);
 
     // Fonctions virtuelles de la classe Electroaimant
-    virtual void activer();
-    virtual void desactiver();
-    virtual bool getEtat();
-    virtual int getPin();
-    virtual void setEtat(bool etat_);
+    void activer();
+    void desactiver();
+    bool getEtat();
+    int getPin();
+    void setEtat(bool etat_);
 };
 
 #endif

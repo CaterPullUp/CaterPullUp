@@ -1,17 +1,17 @@
 /***
- * @author Étienne Germain
- * @file Corps.h
- * @date 17 janvier 2023
+ * @author @MarieClaude1234
+ * @file Patte.h
+ * @date 29 janvier 2023
 ***/
 
-#ifndef CORPS_H
-#define CORPS_H
+#ifndef PATTE_H
+#define PATTE_H
 
 #include "lib\Gabarits\Moteur.h"
 #include "lib\Gabarits\Electroaimant.h"
 #include "ElectroCPU.h"
 
-class Corps
+class Patte
 {
     private:
         Moteur* moteur;
@@ -19,12 +19,12 @@ class Corps
         void init();
 
     public:
-        //Corps(Moteur* _moteur, Electroaimant* _electroaimant);
-        Corps();
-        ~Corps();
+        //Patte(Moteur* _moteur, Electroaimant* _electroaimant);
+        Patte();
+        ~Patte();
 
-        bool monter();
-        bool baisser();
+        bool etirer();
+        bool replier();
         void activerElectro();
         void desactiverElectro();
 };

@@ -6,7 +6,6 @@
 
 #include "ElectroCPU.h"
 
-
 // Constructeur de la classe ElectroCPU
 ElectroCPU::ElectroCPU(int pin_) : Electroaimant(pin_)
 {
@@ -15,7 +14,6 @@ ElectroCPU::ElectroCPU(int pin_) : Electroaimant(pin_)
     pinMode(pin_, OUTPUT);
     digitalWrite(pin_, LOW);
 }
-
 
 void ElectroCPU::activer()
 {
@@ -29,7 +27,7 @@ void ElectroCPU::desactiver()
     digitalWrite(pin, LOW);
 }
 
-bool ElectroCPU::getEtat()      
+bool ElectroCPU::getEtat()
 {
     return etat;
 }
