@@ -1,1 +1,10 @@
 Ce dossier contient le schéma d'architecture du projet. Ce schéma décrit les relations entre les différents composants du projet. Le schéma électrique du montage décrit quant à lui les branchements et le circuit d'activation des électroaimants.
+# Description du cricuit électrique
+Sur la carte OpenCr, trois moteurs sont branchés directement sur une alimentation de 12V, avec un fil de 12V, un fil de masse et un fil de communication. Le ESP32 est également connecté à la carte OpenCr via deux fils SCL et SDA et une alimentation de 3,3V.
+
+En ce qui concerne les électroaimants, deux groupes de deux électroaimants sont connectés en parallèle avec une résistance de 10 kilo ohms, un transistor et une diode pour la protection. Deux autres électroaimants fonctionnent sur une alimentation de 5V, pour lesquels un régulateur de tension (*mentionner lequel*) permet de convertir l'alimentation de 12V de la carte OpenCr en 5V. Ces deux électroaimants sont également connectés en parallèle avec une résistance, un transistor et une diode. Les diodes sont placées en parallèle avec les électroaimants pour éviter que ces derniers ne produisent des pics de tension qui pourraient endommager les autres composants du circuit. Les diodes agissent comme des "soupapes" électriques, en permettant au courant de passer dans un seul sens, et en bloquant le courant dans l'autre sens. Ainsi, si une surtension se produit, elle sera "redirigée" par les diodes vers le ground, plutôt que de causer des dommages aux autres composants du circuit.
+
+Tous ces composants ont été soudés sur un petit protoboard pour les compacter. Des tests ont été effectués après la soudure pour vérifier que les connexions étaient bonnes et que le circuit était opérationnel.
+
+## Problèmes rencontrés et solutions mises en place
+Cependant, des problèmes ont été rencontrés, notamment une surchauffe des MOSFET qui étaient court-circuités, atteignant une température supérieure à 40 degrés Celsius. Une fois le problème résolu, des dissipateurs thermiques ont été installés par mesure de sécurité pour permettre une meilleure diffusion de la chaleur.
