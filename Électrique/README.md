@@ -32,7 +32,7 @@ Cependant, des problèmes ont été rencontrés, notamment une surchauffe des MO
 ||S’assurer que l’alimentation soit active. Exécuter le code.|Les électroaimants branchés sur les ports mis à HIGH devraient s’activer. Les critères de courant sont les mêmes que les tests avec la source. ||
 
 
-![](Aspose.Words.30f0346e-fbb0-458f-a6d3-985c936bfdf7.001.png)![Une image contenant diagramme, schématique
-
+![Circuit électrique du projet](Aspose.Words.30f0346e-fbb0-458f-a6d3-985c936bfdf7.001.png)![Une image contenant diagramme, schématique
+![Pignion Crémaillère mi-session](https://user-images.githubusercontent.com/91679469/220225627-d1ae4e33-2616-47a2-b0b4-71f066dd411d.png)
 Description générée automatiquement](Aspose.Words.30f0346e-fbb0-458f-a6d3-985c936bfdf7.002.png)
 
