@@ -7,13 +7,7 @@
 #ifndef ELECTROCPU_H
 #define ELECTROCPU_H
 
-#if defined(ARDUINO_OpenCR)
-#include <Arduino.h>
-#else
-#define digitalWrite(A,B)
-#define digitalRead(A)
-#define pinMode(A,B)
-#endif
+#include "Arduino_function.h"
 
 #include "Electroaimant.h"
 
@@ -26,7 +20,6 @@ public:
     // Constructeur de la classe ElectroCPU qui appelle le constructeur de la classe Electroaimant
     ElectroCPU(int pin_);
 
-    // Fonctions virtuelles de la classe Electroaimant
     void activer();
     void desactiver();
     bool getEtat();

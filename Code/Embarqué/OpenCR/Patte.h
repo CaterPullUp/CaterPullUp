@@ -17,6 +17,8 @@ class Patte
         Moteur* moteur;
         Electroaimant* electroaimant;
         void init();
+        bool etire;
+        bool replie;
 
     public:
         //Patte(Moteur* _moteur, Electroaimant* _electroaimant);
@@ -27,6 +29,10 @@ class Patte
         bool replier();
         void activerElectro();
         void desactiverElectro();
+
+        bool estEtire();
+        bool estReplie();
+        bool electroActive();
 };
 
 #endif

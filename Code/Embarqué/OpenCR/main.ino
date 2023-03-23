@@ -4,18 +4,21 @@
  * @date 22 janvier 2023
 ***/
 
-// #include <Arduino.h>
+#include "Arduino_function.h"
 #include "Caterpullup.h"
+
+#define DEBUG_BAUD_RATE 115200
 
 Caterpullup robot;
 
-void setup() {
-    //Serial.begin(9600);
+void setup()
+{
+    DEBUG_SERIAL.begin(DEBUG_BAUD_RATE);
 
-    robot = Caterpullup(MODE_AUTO);
+    robot = Caterpullup(MODE_MANUEL);
 }
 
-
-void loop() {
+void loop() 
+{
     robot.gererEtat();
 }

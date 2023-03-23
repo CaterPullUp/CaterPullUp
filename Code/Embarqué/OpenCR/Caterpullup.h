@@ -12,6 +12,7 @@
 #include "lib\Gabarits\Electroaimant.h"
 #include "lib\Gabarits\Moteur.h"
 #include "lib\Peripheriques\PeripheriqueCom.h"
+#include "Dynamixel.h"
 
 #define MODE_MANUEL 1
 #define MODE_AUTO 2
@@ -34,13 +35,15 @@ enum commande_GUI
 
 enum etat_sequence
 {
-    POSITION_DEPART, // pattes avant et arriere retractees, electroaiamnts avant et arriere actives, pignon cremaillere remonte
-    PREP_AVANCER_PATTE_AV, //
-    AVANCER_PATTE_AV,
+    PREP_AVANCER_PATTE_AV,
+    AVANCER_PATTE_AVANT,
     MONTER_CORPS,
     AVANCER_CORPS,
-    PREP_AVANCER_PATTE_AR,
-    AVANCER_PATTE_AR
+    PREP_AVANCER_PATTE_ARR,
+    AVANCER_PATTE_ARRIERE,
+    RETOUR_DEPART,
+    REDRESSER,
+    INCONNU
 };
 
 const float DISTANCE_SEQUENCE = 13;  // !!! A CALCULER EXPÉRIMENTALEMENT
@@ -63,6 +66,8 @@ class Caterpullup
         int mode;
         int nbSequences;
 
+        bool firstInactif;
+
     public:
         /**
          * @brief Constructeur de l'objet Caterpullup
@@ -75,6 +80,8 @@ class Caterpullup
          * @brief Destructeur de l'objet Caterpullup
          */
         ~Caterpullup();
+
+        void init();
 
         /**
          * @brief Set the Mode object
@@ -96,12 +103,6 @@ class Caterpullup
         void set_commande_GUI(enum commande_GUI _etat);
         int get_commande_GUI();
 
-
-
-        /**
-         * @brief 
-         * 
-         */
         void gererEtat();
 
         void gererGUI();
@@ -109,6 +110,14 @@ class Caterpullup
         void sequence();
 
         void calculerNbSequences(float distance);
+
+        void envoyerMessage();
+
+        void recevoirMessage();
+
+        void trouverEtatSequence();
+
+        void faireEtape(enum etat_sequence etat);
 };
 
 #endif

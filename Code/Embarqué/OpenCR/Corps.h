@@ -17,6 +17,8 @@ class Corps
         Moteur* moteur;
         Electroaimant* electroaimant;
         void init();
+        bool monte;
+        bool baisse;
 
     public:
         //Corps(Moteur* _moteur, Electroaimant* _electroaimant);
@@ -27,6 +29,10 @@ class Corps
         bool baisser();
         void activerElectro();
         void desactiverElectro();
+
+        bool estMonte();
+        bool estBaisse();
+        bool electroActive();
 };
 
 #endif

@@ -14,7 +14,7 @@
 
 Patte::Patte()
 {
-    //moteur = new Dynamixel();
+    //moteur = new DXL_Patte();
     electroaimant = new ElectroCPU(11);
 }
 
@@ -31,12 +31,18 @@ void Patte::init()
 
 bool Patte::etirer()
 {
+    //compléter le code
 
+    etire = true;
+    replie = false;
 }
 
 bool Patte::replier()
 {
+    //compléter le code
 
+    etire = false;
+    replie = true;
 }
 
 void Patte::activerElectro()
@@ -47,4 +53,19 @@ void Patte::activerElectro()
 void Patte::desactiverElectro()
 {
     electroaimant->desactiver();
+}
+
+bool Patte::estEtire()
+{
+    return etire;
+}
+
+bool Patte::estReplie()
+{
+    return replie;
+}
+
+bool Patte::electroActive()
+{
+    return electroaimant->getEtat();
 }
