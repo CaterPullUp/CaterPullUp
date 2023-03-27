@@ -2,7 +2,7 @@
  * @author @etiger314
  * @file Electroaimant.h
  * @date 17 janvier 2023
-***/
+
 
 #ifndef ELECTROAIMANT_H
 #define ELECTROAIMANT_H
@@ -24,4 +24,15 @@ public:
     int getPin();
 };
 
+<<<<<<< Updated upstream
 #endif
+<<<<<<< Updated upstream
+=======
+#endif
+
+*/
+>>>>>>> Stashed changes
+=======
+
+*/
+>>>>>>> Stashed changes
