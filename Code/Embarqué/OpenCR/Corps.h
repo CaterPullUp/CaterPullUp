@@ -15,15 +15,14 @@
 class Corps
 {
     private:
-        Moteur * moteur;
+        Moteur* moteur;
         Electroaimant* electroaimant;
-
         bool monte;
         bool baisse;
 
     public:
         //Corps(Moteur* _moteur, Electroaimant* _electroaimant);
-        Corps(Dynamixel2Arduino* dxl_, int pin_electro, int id_moteur);
+        Corps(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur);
         ~Corps();
 
         void init();

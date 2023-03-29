@@ -17,7 +17,7 @@ protected:
 public:
 
     Electroaimant(int pin_){};
-    virtual ~Electroaimant();
+    //virtual ~Electroaimant();
 
     virtual void setEtat(bool etat_)=0;
     virtual bool getEtat()=0;

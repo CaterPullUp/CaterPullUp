@@ -2,24 +2,25 @@
  * @author @etiger314
  * @file Moteur.h
  * @date 17 janvier 2023
-**
+***/
+/*
 #ifndef MOTEUR_H_
 #define MOTEUR_H_
 
 class Moteur
 {
-private:
+protected:
 
     float vitesse;
     int pin;
 
 public:
 
-    Moteur(int pint);
+    Moteur(int pin);
 
-    float getVitesse();
-    int getPin();
-    void setVitesse(float v);
+    virtual float getVitesse() = 0;
+    virtual int getPin() = 0;
+    virtual void setVitesse(float v) = 0;
 };
 
 #endif

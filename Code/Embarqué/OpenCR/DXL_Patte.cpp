@@ -31,11 +31,14 @@ void DXL_Patte::positionInitiale()
 
     if(dxl->getPresentPosition(id, UNIT_DEGREE) < zero_position)
     {
+        DEBUG_SERIAL.println("pos initial 1");
+        DEBUG_SERIAL.println(dxl->getPresentPosition(id, UNIT_DEGREE));
         dxl->setGoalVelocity(id, VITESSE_PATTE, UNIT_PERCENT);
     }
 
     else
     {
+        DEBUG_SERIAL.println("pos initial -1");
         dxl->setGoalVelocity(id, -1 * VITESSE_PATTE, UNIT_PERCENT);
     }
 

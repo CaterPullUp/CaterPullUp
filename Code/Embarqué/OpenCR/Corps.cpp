@@ -5,13 +5,19 @@
 ***/
 
 #include "Corps.h"
+        
+//Corps::Corps(Moteur* _moteur, Electroaimant* _electroaimant)
+//{
+    //moteur = _moteur;
+    //electroaimant = _electroaimant;
+//}
 
 Corps::Corps(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur)
 {
     moteur = new DXL_Corps(dxl, id_moteur, 0);
-    ElectroCPU electro = ElectroCPU(pin_electro);      
-    electroaimant = &electro;
-    //electroaimant = new ElectroCPU(pin_electro);
+    //ElectroCPU electro = ElectroCPU(pin_electro);      
+    //electroaimant = &electro;
+    electroaimant = new ElectroCPU(pin_electro);
 }
 
 Corps::~Corps()
@@ -24,9 +30,6 @@ void Corps::init()
 {
     desactiverElectro();
     monter();
-
-    monte = true;
-    baisse = false;
 }
 
 bool Corps::monter()

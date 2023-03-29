@@ -5,6 +5,12 @@
 ***/
 
 #include "Patte.h"
+        
+//Patte::Patte(Moteur* _moteur, Electroaimant* _electroaimant)
+//{
+    //moteur = _moteur;
+    //electroaimant = _electroaimant;
+//}
 
 Patte::Patte(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur, float zero_position, int direction)
 {

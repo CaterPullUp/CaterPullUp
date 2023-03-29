@@ -7,52 +7,35 @@
 #ifndef CATERPULLUP_H
 #define CATERPPULLUP_H
 
-#include "Bras.h"
+#include "Patte.h"
 #include "Corps.h"
 #include "lib\Gabarits\Electroaimant.h"
 #include "lib\Gabarits\Moteur.h"
 #include "lib\Peripheriques\PeripheriqueCom.h"
-
+#include "Dynamixel.h"
 
 #define MODE_MANUEL 1
 #define MODE_AUTO 2
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-enum
-=======
-enum Commande
->>>>>>> Stashed changes
-=======
-enum Commande
->>>>>>> Stashed changes
+enum commande_GUI_enum
 {
-    INIT,
-    ARRET_URGENCE,
-    RECEVOIR_COMMANDE,
-    EXECUTER_COMMANDE,
-    ACTIVER_ELECTRO,
-    ACTIVER_MOTEUR
+    INACTIF,
+    ELECTRO_AVANT,
+    ELECTRO_CORPS,
+    ELECTRO_ARRIERE,
+    PATTE_AVANT,
+    PIGNON_CREMAILLERE,
+    PATTE_ARRIERE,
+    SEQUENCE_COMPLETE,
+    ETAPE_PAR_ETAPE,
+    AVANCER_AUTO,
+    AVANCER_DISTANCE,
+    ARRET_URGENCE
 };
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-class Caterpullup
+enum etat_sequence
 {
-    private:
-        Moteur* moteurs[3];
-        Electroaimant* electroaimants[6];
-        Bras* bras[2];
-        // Corps corps;
-        // PeripheriqueCom i2c;
-
-        int mode;
-        int etat;
-=======
-=======
->>>>>>> Stashed changes
-enum Sequence
-{
+    INIT,
     PREP_AVANCER_PATTE_AV,
     AVANCER_PATTE_AVANT,
     MONTER_CORPS,
@@ -74,8 +57,8 @@ class Caterpullup
         Patte* patteAvant;
         Patte* patteArriere;
 
-        Sequence etat_sequence;
-        Commande commande_GUI;
+        etat_sequence sequence_robot;
+        commande_GUI_enum commande_GUI;
         
         // PeripheriqueCom i2c;
 
@@ -84,32 +67,42 @@ class Caterpullup
 
         bool first;
         bool firstInactif;
->>>>>>> Stashed changes
-
-        bool moteursArretes;
 
         bool moteursArretes;
 
     public:
+        /**
+         * @brief Constructeur de l'objet Caterpullup
+         * 
+         * @param _mode 
+         */
         Caterpullup(int _mode);
+
+        /**
+         * @brief Destructeur de l'objet Caterpullup
+         */
         ~Caterpullup();
 
+        void init();
+
+        /**
+         * @brief Set the Mode object
+         * 
+         * @param _mode 
+         */
         void setMode(int _mode);
+
+        /**
+         * @brief Get the Mode object
+         * 
+         * @return int _mode (automatique ou manuel)
+         */
         int getMode();
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        void setEtat(int _etat);
-        int getEtat();
+        void set_sequence_robot(enum etat_sequence _etat);
+        int get_sequence_robot();
 
-        void gererEtat();
-=======
-=======
->>>>>>> Stashed changes
-        void set_etat_sequence(enum Sequence _etat);
-        int get_etat_sequence();
-
-        void set_commande_GUI(enum Commande _etat);
+        void set_commande_GUI(enum commande_GUI_enum _etat);
         int get_commande_GUI();
 
         void gererEtat();
@@ -126,13 +119,9 @@ class Caterpullup
 
         void trouverEtatSequence();
 
-        void faireEtape(enum Sequence etat);
+        void faireEtape(enum etat_sequence etat);
 
         void gererMoteurs();
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 };
 
 

@@ -22,6 +22,7 @@ private:
 
     bool finished_movement;
     float current_angle;
+    bool extended;
     float goal_angle;
     Dynamixel2Arduino* dxl;
 

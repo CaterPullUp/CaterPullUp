@@ -9,15 +9,17 @@
 
 #define DEBUG_BAUD_RATE 115200
 
-Caterpullup * robot;
+Caterpullup* robot;
 
 void setup()
 {
     DEBUG_SERIAL.begin(DEBUG_BAUD_RATE);
+    while(!DEBUG_SERIAL);
 
     //robot = Caterpullup(MODE_MANUEL);
     DEBUG_SERIAL.println("start");
     robot = new Caterpullup(MODE_MANUEL);
+    robot->init();
 }
 
 void loop() 
