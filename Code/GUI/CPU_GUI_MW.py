@@ -97,8 +97,6 @@ electro_actives = 2
 def show_frame(frame):
     frame.tkraise()
 
-
-
 def show_manual(frame):
     reset_manual()
     frame.tkraise()
@@ -165,13 +163,7 @@ def reset_manual():
     image_bas = image_bas.resize((int(image_bas.size[0]/ratio),int(image_bas.size[1]/ratio)))
     manual_win.new_imageT3 = ImageTk.PhotoImage(image_bas)
     basimg.configure(image=manual_win.new_imageT3)
-    # barre de progression
-    image_prog = Image.open(f'./progbar_{etape_actuelle}.png')
-    image_prog = image_prog.resize((int(image_prog.size[0]/2),int(image_prog.size[1]/2)))
-    manual_win.new_progbar = ImageTk.PhotoImage(image_prog)
-    prog_bar.configure(image=manual_win.new_progbar)
     
-
 def chg_electroTop(img):
     ratio = 5
     global etat_electroTop
@@ -191,8 +183,7 @@ def chg_electroTop(img):
                 img.configure(image=manual_win.new_imageT)
                 num_fonction = 8
                 etat_electroTop = False
-            
-            
+                    
     else:
         if etat_patteAvant:
             image = Image.open('./topActifVert.png')
@@ -236,7 +227,6 @@ def chg_electroMid(img):
         else:
             messagebox.showerror('Action impossible', "Descendre d'abord le corps", icon='error')
         
-
 def chg_electroBas(img):
     ratio = 5
     global etat_electroBas
@@ -266,7 +256,7 @@ def chg_electroBas(img):
         img.configure(image=manual_win.new_imageB)
         num_fonction = 11
         etat_electroBas = True
-        electro_actives+=1
+        electro_actives += 1
 
 def move_patteAvant(img):
     ratio = 5
@@ -353,59 +343,45 @@ def etapes(progbar_img):
     num_fonction = 16
 
 #Partie du haut
-top = Frame(manual_win, width=1000,height=100,bg='#24b700')#'#b3ff00')
+top = Frame(manual_win, width=1000,height=100,bg='#24b700')
 top.grid(columnspan=4, rowspan=1, row=0)
 
 #Partie Centrale
 mid = Frame(manual_win, width=1000, height=750, bg='white')
-mid.grid(columnspan=4, rowspan=7, row=1)
-
+mid.grid(columnspan=4, rowspan=5, row=1)
 
 ajout_logo('./chenille_nobg.png', 0, 3, 7)
-topimg = ajout_image('./topDesacRouge.png',2,1,5,stick=S,rowspan=1,pady=20)
-midimg = ajout_image('./midDesacRouge.png',3,1,5,stick='',rowspan=1,pady=0)
-basimg = ajout_image('./basDesacRouge.png',5,1,5,stick=N,rowspan=1)
-prog_bar = ajout_image('./progbar_0.png',1,1,2,stick = N,pady=35)
-sequence_bar = ajout_icone('./Sequence.png',1,0,stick = SE,funct = lambda:sequence())
-sequence_lbl = Label(manual_win,text='Sequence ',bg='white',font=('Arial',20))
-sequence_lbl.grid(column=0,row=2,sticky=NE)
-
-etape = ajout_icone('./etape_par_etape.png',1,2,stick = SW, funct = lambda:etapes(prog_bar))
-etape_lbl = Label(manual_win,text=' Par étape',bg='white',font=('Arial',20))
-etape_lbl.grid(column=2,row=2,sticky=NW)
-
-stop = ajout_icone('./stop.png',6,1,stick = N, height=110,width=120, funct = lambda:arret())
-stop_lbl = Label(manual_win,text='STOP',bg='white',font=('Arial',20))
-stop_lbl.grid(column=1,row=7,sticky=N)
+topimg = ajout_image('./topDesacRouge.png',1,1,5,stick=S,rowspan=1,pady=0)
+midimg = ajout_image('./midDesacRouge.png',2,1,5,stick='',rowspan=1,pady=0)
+basimg = ajout_image('./basDesacRouge.png',3,1,5,stick=N,rowspan=1)
 
 btn_automatic = Button(manual_win,command=lambda:show_frame(auto_win),text='Changer pour automatique',bg='white',fg='black')
 btn_automatic.grid(column=0,row=0,sticky=W,padx=20)
 
 btn_mvmntAvant = Button(manual_win,text="Activer patte avant", bg="#24b700",fg="white", command=lambda:move_patteAvant(topimg))
-btn_mvmntAvant.grid(column=0,row=2,sticky=E)
+btn_mvmntAvant.grid(column=0,row=1,sticky=E)
 
 btn_mvmtCorps = Button(manual_win, text="Activer corps", bg="#24b700",fg="white", command=lambda:move_Corps(midimg))
-btn_mvmtCorps.grid(column=0,row=3,sticky=E)
+btn_mvmtCorps.grid(column=0,row=2,sticky=E)
 
 btn_mvmtArriere = Button(manual_win, text="Activer patte arrière", bg="#24b700",fg="white", command=lambda:move_patteArriere(basimg))
-btn_mvmtArriere.grid(column=0,row=5,sticky=E)
+btn_mvmtArriere.grid(column=0,row=3,sticky=E)
 
 btn_electroAvant = Button(manual_win, command=lambda:chg_electroTop(topimg),text="Activer électroaimant avant", bg="#24b700",fg="white")
-btn_electroAvant.grid(column=2,row=2,sticky=W)
+btn_electroAvant.grid(column=2,row=1,sticky=W)
 
 btn_electroCorps = Button(manual_win, command=lambda:chg_electroMid(midimg), text="Activer électroaimant corps", bg="#24b700",fg="white")
-btn_electroCorps.grid(column=2,row=3,sticky=W)
+btn_electroCorps.grid(column=2,row=2,sticky=W)
 
 btn_electroArriere = Button(manual_win, command=lambda:chg_electroBas(basimg), text="Activer électroaimant arrière", bg="#24b700",fg="white")
-btn_electroArriere.grid(column=2,row=5,sticky=W)
+btn_electroArriere.grid(column=2,row=3,sticky=W)
 
 # Textbox input terminal
 text_box_manual = Text(manual_win, height = 45, width = 40, padx = 0, pady = 0)
 text_box_manual.insert(1.0, "Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
 text_box_manual.tag_configure('center', justify='center')
 text_box_manual.tag_add('center',1.0,"end")
-text_box_manual.grid(column=3, row= 1,rowspan=7)
-
+text_box_manual.grid(column=3, row= 1,rowspan=5)
 
 # AUTOMATIC   
 def arret():
@@ -417,21 +393,21 @@ def aller_distance(lbl,new_text,distance):
         lbl.config(text = new_text)
     else:
         lbl.config(text = 'Erreur')
+    entry_log.delete(0, END)
     num_fonction = 18
 
-
-def ajout_image_auto(path,row,column,ratio,stick=NW,rowspan=1,padx=20):
+def ajout_image_auto(path,row,column,ratio,stick=NW,rowspan=1,padx=20,pady=0):
     img = Image.open(path)
     img = img.resize((int(img.size[0]/ratio),int(img.size[1]/ratio)))
     img = ImageTk.PhotoImage(img)
     img_name = Label(auto_win,image=img, bg="white")
     img_name.image = img
-    img_name.grid(column=column, row=row, rowspan=rowspan, sticky=stick, padx=padx, pady=0)
+    img_name.grid(column=column, row=row, rowspan=rowspan, sticky=stick, padx=padx, pady=pady)
     return img_name
 
-def ajout_icone_auto(url, row, column, stick, funct,height=310, width=130,ratio1=2.2,ratio2=1.5,rowspan=1):
+def ajout_icone_auto(url, row, column, stick, funct,height=310, width=130,ratiox=2.2,ratioy=1.5,rowspan=1):
     icon = Image.open(url)
-    icon = icon.resize((int(icon.size[0]/ratio1),int(icon.size[1]/ratio2)))
+    icon = icon.resize((int(icon.size[0]/ratiox),int(icon.size[1]/ratioy)))
     l_button = int(icon.size[0]/3)+5
     h_button = int(icon.size[1]/3)+5
     icon = ImageTk.PhotoImage(icon)
@@ -444,7 +420,7 @@ def avancer_auto(icon_name):
     global Avancer
     if Avancer:
         icon = Image.open("fleche_videR.png")
-        icon = icon.resize((int(icon.size[0]/2.2),int(icon.size[1]/1.5)))
+        icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
         auto_win.fleche = ImageTk.PhotoImage(icon)
         icon_name.configure(image=auto_win.fleche)
         num_fonction = 14
@@ -455,7 +431,7 @@ def avancer_auto(icon_name):
         #s.send(bytes("Arreter","utf-8"))
     else:
         icon = Image.open("fleche_pleineV.png")
-        icon = icon.resize((int(icon.size[0]/2.2),int(icon.size[1]/1.5)))
+        icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
         auto_win.fleche = ImageTk.PhotoImage(icon)
         icon_name.configure(image=auto_win.fleche)
         num_fonction = 13
@@ -463,7 +439,7 @@ def avancer_auto(icon_name):
         #s.send(bytes("Avancer","utf-8"))
 
 #Partie du haut
-top = Frame(auto_win, width=1000,height=100,bg='#24b700')#'#b3ff00')
+top = Frame(auto_win, width=1000,height=100,bg='#24b700')
 top.grid(columnspan=4, rowspan=1, row=0)
 
 #Partie Centrale
@@ -472,29 +448,37 @@ mid.grid(columnspan=4, rowspan=7, row=1)
 
 #Controle du robot
 ajout_image_auto('./chenille_nobg.png', 0, 3, 7,stick = E)
-ajout_image_auto('./CPU_robot.png', 1, 1, 1.5,rowspan=5,stick=N,padx=0)
+ajout_image_auto('./CPU_robot.png', 2, 1, 2.1,rowspan=4,stick=N,padx=0)
 
-new_icon = ajout_icone_auto('fleche_videR.png', 1, 0, E, lambda:avancer_auto(new_icon),rowspan=5)
+avancer = ajout_icone_auto('fleche_videR.png', 3, 0, '', lambda:avancer_auto(avancer),height=350, width=110,ratiox=2.5,ratioy=2.5,rowspan=2)
+avancer_lbl = Label(auto_win,text=' Avancer',bg='white',font=('Arial',20))
+avancer_lbl.grid(column=0,row=5,sticky=N)
 
-stop = ajout_icone_auto('./stop.png',6,1,stick='',height=110,width=120,funct=lambda:arret(),ratio1=1.5,ratio2=1.5)
-stop_lbl = Label(auto_win,text='STOP',bg='white',font=('Arial',20))
-stop_lbl.grid(column=1,row=7,sticky='')
+sequence_bar = ajout_icone_auto('./Sequence.png',1,0,stick = S,funct = lambda:sequence(), height=70, width=140)
+sequence_lbl = Label(auto_win,text='Sequence ',bg='white',font=('Arial',20))
+sequence_lbl.grid(column=0,row=2,sticky=N)
 
-entry_log = Entry(auto_win,width=15,highlightthickness=3)#,bg='black',fg='white')
-entry_log.grid(column=2, row=3,sticky=N,pady=0)
-entry_log.config(highlightbackground = "black", highlightcolor= "black")
+etape = ajout_icone_auto('./etape_par_etape.png',1,2,stick = S, funct = lambda:etapes(prog_bar), height=70, width=140)
+etape_lbl = Label(auto_win,text=' Par étape',bg='white',font=('Arial',20))
+etape_lbl.grid(column=2,row=2,sticky=N)
+
+prog_bar = ajout_image_auto('./progbar_0.png',1,1,2,stick = '',pady=0,padx=0)
 
 btn_distance = Button(auto_win,command=lambda:aller_distance(lbl_distance, f"Distance à parcourir:\n {entry_log.get()} mm",entry_log.get()),text="Entrer une distance (mm)", bg="#24b700",fg="white")
-btn_distance.grid(column=2,row=2,sticky=S)
-
+btn_distance.grid(column=2,row=3,sticky=S)
 lbl_distance = Label(auto_win, text=" ",font=('Arial',14), fg ="black", bg="white")
-lbl_distance.grid(column=2, row=3, sticky='')
+lbl_distance.grid(column=2, row=4, sticky='')
+
+stop = ajout_icone_auto('./stop.png',5,1,stick=S,height=110,width=120,funct=lambda:arret(),ratiox=1.5,ratioy=1.5)
+stop_lbl = Label(auto_win,text='STOP',bg='white',font=('Arial',20))
+stop_lbl.grid(column=1,row=6,sticky=N)
+
+entry_log = Entry(auto_win,width=15,highlightthickness=3)
+entry_log.grid(column=2, row=4,sticky=N,pady=0)
+entry_log.config(highlightbackground = "black", highlightcolor= "black")
 
 btn_manual = Button(auto_win,command=lambda:show_manual(manual_win),text='Changer pour manuel',bg='white',fg='black')
 btn_manual.grid(column=0,row=0,sticky=W,padx=20)
-
-
-
 
 # Textbox input terminal
 text_box = Text(auto_win, height = 45, width = 40, padx = 0, pady = 0)
@@ -504,7 +488,6 @@ text_box.tag_add('center',1.0,"end")
 text_box.grid(column=3, row= 1,rowspan=7)
 
 show_manual(manual_win)
-
 
 window.mainloop()
 
