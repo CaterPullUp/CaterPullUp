@@ -9,6 +9,7 @@ Toutefois, le mouvement du robot sera inspiré d’une chenille au lieu d’un i
 quadrupède. Cela permettra de simplifier le modèle et de diminuer le nombre de composantes du
 robot diminuant ainsi son poids.
 
+nom_de_l'image_1 = ![Campus](https://user-images.githubusercontent.com/93997878/228574849-a6ea7353-1c47-4b25-a4ec-31b0bc72ba3e.png)
 <p align="center">
   <img src="nom_de_l'image_1" width="400" />
   <img src="nom_de_l'image_2" width="400" />
@@ -17,3 +18,4 @@ robot diminuant ainsi son poids.
 Figure 1. Description de la première image.
 
 Figure 2. Description de la deuxième image.
+
