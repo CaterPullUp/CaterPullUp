@@ -11,8 +11,8 @@ robot diminuant ainsi son poids.
 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93997878/228574849-a6ea7353-1c47-4b25-a4ec-31b0bc72ba3e.png" style="margin-right:20px" width="400" />
-  <img src="https://user-images.githubusercontent.com/93997878/228589013-9cc0341d-c45c-4e49-b7da-f8ef00dbbda3.png" style="margin-left:20px" width="400" />
+  <img src="https://user-images.githubusercontent.com/93997878/228574849-a6ea7353-1c47-4b25-a4ec-31b0bc72ba3e.png" style="margin-right:1000px" width="350" />
+  <img src="https://user-images.githubusercontent.com/93997878/228589013-9cc0341d-c45c-4e49-b7da-f8ef00dbbda3.png" style="margin-left:1000px" width="350" />
 </p>
 
 Figure 1. Description de la première image.
