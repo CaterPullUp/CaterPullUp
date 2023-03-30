@@ -27,6 +27,7 @@ Le robot se déplace à l'aide de deux pattes ayant deux degrés de liberté. Il
 
 ## Comment se retrouver dans le GitHub CaterPullUp
 ### Code
+Tout le code pour contrôller le robot se trouve dans le dossier code, puis dans le dossier 
 ### Mécanique
 ### Électrique
 
