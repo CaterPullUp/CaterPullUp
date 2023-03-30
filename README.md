@@ -16,10 +16,9 @@ robot diminuant ainsi son poids.
   <img src="https://user-images.githubusercontent.com/93997878/228574849-a6ea7353-1c47-4b25-a4ec-31b0bc72ba3e.png" alt="Figure 1: Allo" style="margin-right:1000px" width="500" />
   <img src="https://user-images.githubusercontent.com/93997878/228589013-9cc0341d-c45c-4e49-b7da-f8ef00dbbda3.png" style="margin-left:1000px" width="500" />
 </p>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Figure 1: Robot de CampUS&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Figure 2: Robot de CatterPullUp
 
-Figure 1. Description de la première image.
 
-Figure 2. Description de la deuxième image.
 
 
 
