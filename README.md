@@ -27,8 +27,9 @@ Le robot se déplace à l'aide de deux pattes ayant deux degrés de liberté. Il
 
 ## Comment se retrouver dans le GitHub CaterPullUp
 ### Code
-Tout le code pour contrôller le robot se trouve dans le dossier code, puis dans le dossier 
+Tout le code pour contrôller le robot se trouve dans le dossier *Code*, puis dans le dossier *Embarqué*. Ensuite le code du Bluetooth est dans le dossier *ESP32* alors que tout le reste du code se trouve dans le dossier *OpenCr*.
 ### Mécanique
+
 ### Électrique
 
 
