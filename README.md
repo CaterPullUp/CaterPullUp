@@ -18,7 +18,10 @@ robot diminuant ainsi son poids.
 </p>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Figure 1: Robot de CampUS&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Figure 2: Robot de CatterPullUp
 
-
+## Description du robot CaterPullUp
+Le robot se déplace à l'aide de deux pattes ayant deux degrés de liberté. Il est dans l'incapacité de tourner. Cependant, cela accentue sa vitesse de manière significative, car il n'a que deux pattes à mouvoir. Deux électroaimants par patte ainsi qu'un gros électroaimant supporté par un système de crémaillère permettent au robot de se maintenir à la verticale sur un mur métallique aimanté. Tous les composants (moteurs, électroaimants) du robot sont controllés à l'aide d'une carte OpenCr qui utilise le language C++. Le tout est controllé à partir d'une interface utilisateur qui offre un mode manuel (contrôle des composantes individuelles) et un mode automatique (parcours une distance donnée). L'interface est suffisamment sécurisé pour empêché le robot de tomber, car il empêche l'exécution des séquences de mouvements pouvant entrainer sa chute. Par contre, l'interface à de la difficulté à gérer les données lorsque l'utilisateur appui sur un même bouton de manière répété et rapide. C'est un cas limite qui n'est pas géré. Aussi, l'interface communique avec le ESP32 à l'aide du Bluetooth.
+### Dimensions
+12,5x7x7
 
 
 
