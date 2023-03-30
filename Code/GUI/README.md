@@ -6,11 +6,17 @@ L'interface graphique comprend deux fenêtres distinctes auxquelles il est possi
 
 ## Fenêtre pour l'utilisation manuelle
 
+
 Les différentes sections et composantes du robot peuvent être contrôlées individuellement à l'aide de la fenêtre d'utilisation manuelle.
-PHOTO
+![Manuel_GUI](https://user-images.githubusercontent.com/94627446/228851357-da047edc-61ed-49c3-8a4d-e6e5aa4af75a.png)
 Les pattes et l'actuateur linéaire peuvent être déplacés individuellement et les électroaimants peuvent être activés et désactivés par section, le tout de façon sécuritaire en empêchant des configurations qui pourraient endommager le robot et ses composantes. La représentation visuelle du robot permet de voir si les pattes et l'actuateur sont séparément en extension ou rétractés et quels électroaimants sont activés ou désactivés.
-PHOTOS
+![basActifVert](https://user-images.githubusercontent.com/94627446/228851738-10d79a3d-7274-42be-8324-fc0ec2f17d82.png)
+![basDesacRouge](https://user-images.githubusercontent.com/94627446/228851768-2b2031b8-d3b5-4c7e-9bc5-9b961d7f3be5.png)
+![basDesacVert](https://user-images.githubusercontent.com/94627446/228851858-82b88dfc-8292-4e39-bd3b-f0a9d80a2d4f.png)
+![basActifRouge](https://user-images.githubusercontent.com/94627446/228851945-84b4fc03-1fa6-4049-96f9-534a335ea05f.png)
 Des boîtes de message d'erreurs apparaissent lorsque l'utilisateur appuie sur un bouton menant à une configuration interdite, par soucis de ne pas endommager le robot. Une brève description de l'erreur est affichée et la fenêtre du GUI est inaccessible jusqu'à ce que l'utilisateur reconnaisse l'erreur en appuyant su le bouton 'OK'.
-PHOTO
+![Erreur_GUI](https://user-images.githubusercontent.com/94627446/228852111-c7346ffe-d1e6-419e-a459-2d7653ae2985.png)
 
 ## Fenêtre pour l'utilisation automatique
+La fenêtre automatique permet de contrôler le robot pour qu'il accomplisse différentes actions en lien direct avec le déplacement linéaire du robot sur la surface métallique. Les options de contrôlent incluent le déplacement du robot sans arrêt avec le bouton Avancer, le déplacement une séquence à la fois avec le bouton Séquence, le déplacement une étape de la séquence à la fois avec le bouton Étapes, le déplacement en entrant une distance avec le bouton Entrer une distance (mm) et arrêter le robot à tout moment avec le bouton ARRÊT.
+![Auto_GUI](https://user-images.githubusercontent.com/94627446/228856085-ac5462e7-6c2c-4721-94dc-9d6942b756be.png)
