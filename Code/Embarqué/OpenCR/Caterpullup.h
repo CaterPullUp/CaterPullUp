@@ -17,6 +17,13 @@
 #define MODE_MANUEL 1
 #define MODE_AUTO 2
 
+#define AUCUNE 0
+#define REPLIER 1
+#define ETIRER 2
+#define MONTER 3
+#define BAISSER 4
+#define TERMINER 5
+
 enum commande_GUI_enum
 {
     INACTIF,
@@ -47,12 +54,13 @@ enum etat_sequence
     INCONNU
 };
 
-const float DISTANCE_SEQUENCE = 13;  // !!! A CALCULER EXPÉRIMENTALEMENT
+const float DISTANCE_SEQUENCE = 100;  // !!! A CALCULER EXPÉRIMENTALEMENT
 
 class Caterpullup
 {
     private:
 
+        Dynamixel2Arduino* dxl;
         Corps* corps;
         Patte* patteAvant;
         Patte* patteArriere;
@@ -68,7 +76,8 @@ class Caterpullup
         bool first;
         bool firstInactif;
 
-        bool moteursArretes;
+        //bool moteursArretes;
+        int action;
 
     public:
         /**
@@ -121,7 +130,7 @@ class Caterpullup
 
         void faireEtape(enum etat_sequence etat);
 
-        void gererMoteurs();
+        //void gererMoteurs();
 };
 
 

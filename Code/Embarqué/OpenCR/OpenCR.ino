@@ -25,5 +25,5 @@ void setup()
 void loop() 
 {
     robot->gererEtat();
-    robot->gererMoteurs();
+    //robot->gererMoteurs();
 }

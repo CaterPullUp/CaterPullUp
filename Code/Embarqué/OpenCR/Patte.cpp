@@ -5,18 +5,13 @@
 ***/
 
 #include "Patte.h"
-        
-//Patte::Patte(Moteur* _moteur, Electroaimant* _electroaimant)
-//{
-    //moteur = _moteur;
-    //electroaimant = _electroaimant;
-//}
 
 Patte::Patte(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur, float zero_position, int direction)
 {
     moteur = new DXL_Patte(dxl, id_moteur, zero_position, direction);
-
     electroaimant = new ElectroCPU(pin_electro);
+    replie = false;
+    etire = false;
 }
 
 Patte::~Patte()
@@ -36,18 +31,54 @@ void Patte::init()
 
 bool Patte::etirer()
 {
-    //compléter le code
+    if(etire)
+    {
+        return true;
+    }
 
-    etire = true;
-    replie = false;
+    if(replie)
+    {
+        ((DXL_Patte *)moteur)->incrementGoalAngle(EXTEND_MOVEMENT_ANGLE);
+        ((DXL_Patte *)moteur)->setVitesse();
+
+        replie = false;
+
+        return false;
+    }
+    
+    if(estArrete())
+    {
+        etire = true;
+        return true;
+    }
+
+    return false;
 }
 
 bool Patte::replier()
 {
-    //compléter le code
+    if(replie)
+    {
+        return true;
+    }
 
-    etire = false;
-    replie = true;
+    if(etire)
+    {
+        ((DXL_Patte *)moteur)->incrementGoalAngle(RETRACT_MOVEMENT_ANGLE);
+        ((DXL_Patte *)moteur)->setVitesse();
+
+        etire = false;
+
+        return false;
+    }
+    
+    if(estArrete())
+    {
+        replie = true;
+        return true;
+    }
+
+    return false;
 }
 
 void Patte::activerElectro()

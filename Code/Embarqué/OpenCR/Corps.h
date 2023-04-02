@@ -35,6 +35,8 @@ class Corps
         bool estMonte();
         bool estBaisse();
         bool electroActive();
+
+        bool estArrete();
 };
 
 #endif

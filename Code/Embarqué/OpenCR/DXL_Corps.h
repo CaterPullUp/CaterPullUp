@@ -12,31 +12,48 @@
 #include "Dynamixel.h"
 #include "Moteur.h"
 
-#define VITESSE_CORPS 5  ///////////
+using namespace ControlTableItem;
+
+#define VITESSE_CORPS 50
+
+#define ANGLE_MONTER 190
+#define ANGLE_BAISSER 0
 
 class DXL_Corps : public Moteur
 {
 private:
 
-    float zero_position;
     Dynamixel2Arduino* dxl;
-    bool down;
     int id;
+    bool finished_movement;
+
+    float current_angle;
+    float goal_angle;
+
+    void init();
 
 public:
 
-    DXL_Corps(Dynamixel2Arduino* dxl, int id, float zero_position);
+    DXL_Corps(Dynamixel2Arduino* dxl, int id);
 
     int getPins();
     float getVitesse();
     void setVitesse(float v);
 
-    void setZeroPosition(float angle);
-    float getZeroPosition();
+    uint8_t getID();
+    bool is_movement_finished();
 
-    void stopMotor();
-    void stopTorque();
-    void startTorque();
+    void go_to_position(float angle);
+
+    float getGoalAngle();
+
+    float currentAngle();
+
+    void positionInitiale();
+
+    //void stopMotor();
+    //void stopTorque();
+    //void startTorque();
 
 };
 

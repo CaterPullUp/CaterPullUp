@@ -7,14 +7,15 @@
 #ifndef DXL_PATTE_H
 #define DXL_PATTE_H
 
-#define EXTEND_MOVEMENT_ANGLE 200
-#define RETRACT_MOVEMENT_ANGLE 160
-#define VITESSE_PATTE 10
+#define VITESSE_PATTE 5
 
 #include "Arduino_function.h"
 
 #include "Dynamixel.h"
 #include "Moteur.h"
+
+#define EXTEND_MOVEMENT_ANGLE 200
+#define RETRACT_MOVEMENT_ANGLE 160
 
 class DXL_Patte : public Moteur
 {
@@ -22,7 +23,6 @@ private:
 
     bool finished_movement;
     float current_angle;
-    bool extended;
     float goal_angle;
     Dynamixel2Arduino* dxl;
 
@@ -42,17 +42,23 @@ public:
     int getPins();
 
     bool is_movement_finished();
-    float getCurrentAngle();
-    bool is_extended();
+
+    float currentAngle();
+
     void incrementGoalAngle(float angle);
+
     float getGoalAngle();
-    void setZeroPosition(float angle);
     float getZeroPosition();
-    void stopMotor();
-    void stopTorque();
-    void startTorque();
-    bool getTorque();
     uint8_t getID();
+    int getDirection();
+
+    void setVitesse();
+
+    //void stopMotor();
+    //void stopTorque();
+    //void startTorque();
+    //bool getTorque();
+    
 };
 
 #endif
