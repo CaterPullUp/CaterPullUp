@@ -17,6 +17,8 @@ class Patte
     private:
         Moteur* moteur;
         Electroaimant* electroaimant;
+
+        int direction_;
         
         bool etire;
         bool replie;

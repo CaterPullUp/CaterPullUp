@@ -76,7 +76,7 @@ class Caterpullup
         bool first;
         bool firstInactif;
 
-        //bool moteursArretes;
+        bool moteursArretes;
         int action;
 
     public:
@@ -130,7 +130,7 @@ class Caterpullup
 
         void faireEtape(enum etat_sequence etat);
 
-        //void gererMoteurs();
+        void gererMoteurs();
 };
 
 

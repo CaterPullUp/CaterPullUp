@@ -26,7 +26,8 @@ Caterpullup::Caterpullup(int _mode)
     /*dxl = new Dynamixel2Arduino(DXL_SERIAL, DXL_DIR_PIN);
     dxl->begin(DXL_BAUD_RATE);
     dxl->setPortProtocolVersion(DXL_PROTOCOL_VERSION);*/
-    patteAvant = new Patte(dxl, 12, 1, 115, 1);
+    //patteAvant = new Patte(dxl, 12, 1, 115, 1);
+    patteAvant = new Patte(dxl, 12, 1, 185, 1);
     patteArriere = new Patte(dxl, 13, 2, 95, -1);
     corps = new Corps(dxl, 14, 3);
 
@@ -53,8 +54,8 @@ void Caterpullup::init()
 {
     patteAvant->init();
     patteArriere->init();
-    corps->init();
-    //moteursArretes = false;
+    //corps->init();
+    moteursArretes = false;
     DEBUG_SERIAL.println("moteurs bougent");
 }
 
@@ -335,23 +336,31 @@ void Caterpullup::gererEtat()
 {
     if (sequence_robot == INIT)
     {
-        if(patteAvant->estArrete() && patteArriere->estArrete() && corps->estArrete())
+            DEBUG_SERIAL.println("gererEtat");
+        if(moteursArretes)
         {
             patteAvant->activerElectro();
             patteArriere->activerElectro();
+            //sequence_robot = PREP_AVANCER_PATTE_AV;
             sequence_robot = AVANCER_PATTE_AVANT;
-
-            commande_GUI = AVANCER_AUTO;      ////////ENLEVER HABITUELLEMENT
+            mode = MODE_AUTO;
+            DEBUG_SERIAL.println("moteur stop");
+            delay(750);
+            //commande_GUI = AVANCER_AUTO;      ////////ENLEVER HABITUELLEMENT
         }
     }
 
     else if (mode == MODE_MANUEL)
     {
+           // DEBUG_SERIAL.println("Manuel");
         gererGUI();
     }
 
     else if (mode == MODE_AUTO)
     {
+        DEBUG_SERIAL.println("Auto");
+        bool patteAvantRepliee;
+        bool patteArriereEtiree;
         switch (sequence_robot)
         {            
             case INCONNU:
@@ -365,7 +374,7 @@ void Caterpullup::gererEtat()
                 {
                     corps->activerElectro();
                     sequence_robot = AVANCER_PATTE_AVANT;
-
+                    DEBUG_SERIAL.println("fin_baisser");
                     if(nbSequences == -2) //etape par etape
                     {
                         mode = MODE_MANUEL;
@@ -376,16 +385,18 @@ void Caterpullup::gererEtat()
                 break;
 
             case AVANCER_PATTE_AVANT:
-
-                patteAvant->desactiverElectro();
-
+                
+                //patteAvant->desactiverElectro();
+                DEBUG_SERIAL.println("case avancer patte av");
                 if (patteAvant->etirer())
                 {
                     patteAvant->activerElectro();
-                    sequence_robot = MONTER_CORPS;
-
+                    //sequence_robot = MONTER_CORPS;
+                    sequence_robot = AVANCER_CORPS;
+                    delay(750);
                     if(nbSequences == -2) //etape par etape
                     {
+                        DEBUG_SERIAL.println("-seq 2");
                         mode = MODE_MANUEL;
                         commande_GUI = INACTIF;
                     }
@@ -413,11 +424,12 @@ void Caterpullup::gererEtat()
             case AVANCER_CORPS:
 
                 DEBUG_SERIAL.println(dxl->getPresentPosition(2, UNIT_DEGREE));
-
-                if (patteAvant->replier() && patteArriere->etirer())
+                patteAvantRepliee = patteAvant->replier();
+                patteArriereEtiree = patteArriere->etirer();
+                if (patteAvantRepliee && patteArriereEtiree)
                 {
                     sequence_robot = PREP_AVANCER_PATTE_ARR;
-
+                    delay(750);
                     if(nbSequences == -2) //etape par etape
                     {
                         mode = MODE_MANUEL;
@@ -513,18 +525,23 @@ void Caterpullup::gererEtat()
                 break;
         }
 
-        if (commande_GUI = ARRET_URGENCE)
+        if (commande_GUI == ARRET_URGENCE)
         {
+          
+            DEBUG_SERIAL.println("URGENCE");
             mode = MODE_MANUEL;
             commande_GUI = INACTIF;
         }
     }
 }
 
-//void Caterpullup::gererMoteurs()
-//{
-    //moteursArretes = patteAvant->estArrete() && patteArriere->estArrete();// && corps->estArrete();
-//}
+void Caterpullup::gererMoteurs()
+{
+    bool moteurAvantArrete = patteAvant->estArrete();
+    bool moteurArriereArrete = patteArriere->estArrete();
+   //bool corpsArrete = corps->estArrete();
+    moteursArretes = moteurAvantArrete && moteurArriereArrete; //&& corpsArrete;
+}
 
 void Caterpullup::calculerNbSequences(float distance)
 {

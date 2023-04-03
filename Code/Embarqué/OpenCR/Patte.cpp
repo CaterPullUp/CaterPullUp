@@ -9,6 +9,7 @@
 Patte::Patte(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur, float zero_position, int direction)
 {
     moteur = new DXL_Patte(dxl, id_moteur, zero_position, direction);
+    direction_ = direction;
     electroaimant = new ElectroCPU(pin_electro);
     replie = false;
     etire = false;
@@ -33,12 +34,14 @@ bool Patte::etirer()
 {
     if(etire)
     {
+        DEBUG_SERIAL.println("etire");
         return true;
     }
 
     if(replie)
     {
-        ((DXL_Patte *)moteur)->incrementGoalAngle(EXTEND_MOVEMENT_ANGLE);
+        DEBUG_SERIAL.println("replie");      
+        ((DXL_Patte *)moteur)->incrementGoalAngle(direction_ == 1 ? EXTEND_MOVEMENT_ANGLE : RETRACT_MOVEMENT_ANGLE);
         ((DXL_Patte *)moteur)->setVitesse();
 
         replie = false;
@@ -48,10 +51,11 @@ bool Patte::etirer()
     
     if(estArrete())
     {
+        DEBUG_SERIAL.println("arrete");
         etire = true;
         return true;
     }
-
+            DEBUG_SERIAL.println("rien");
     return false;
 }
 
@@ -64,7 +68,7 @@ bool Patte::replier()
 
     if(etire)
     {
-        ((DXL_Patte *)moteur)->incrementGoalAngle(RETRACT_MOVEMENT_ANGLE);
+        ((DXL_Patte *)moteur)->incrementGoalAngle(direction_ == 1 ? RETRACT_MOVEMENT_ANGLE : EXTEND_MOVEMENT_ANGLE);
         ((DXL_Patte *)moteur)->setVitesse();
 
         etire = false;
