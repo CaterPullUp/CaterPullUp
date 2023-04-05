@@ -25,7 +25,8 @@ Le corps de CaterPullUp est découpé au laser dans du bois. Chaque composante d
 ![Corps mi-session](https://user-images.githubusercontent.com/91679469/220228163-77db5452-5665-4c26-a011-d5c62c0b76ea.png)
 
 ## Calculs pour la conception
-### Déflection maximale de la crémaillère sans glissière. 
+### Déflection maximale de la crémaillère sans glissière.
+
 ![image](https://user-images.githubusercontent.com/93997878/230128710-629a4dca-6900-4858-b513-a47c867ad3b3.png)
 
  
