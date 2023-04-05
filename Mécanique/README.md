@@ -75,13 +75,13 @@ $r_{engrenage} = 0,01\ \mathrm{m}$
 
 Comme $0,007\ \mathrm{Nm}$ est inférieur à $1\ \mathrm{Nm}$ soit le couple maximal toléré par le moteur, le moteur n'aura aucune difficulté à soulever la crémaillère.
 
-### Le couple maximal du moteur XM est-il suffisant pour soulever le robot
+### Le couple maximal du moteur XM est-il suffisant pour soulever le robot?
 ![image](https://user-images.githubusercontent.com/93997878/230193524-332110be-6884-417c-95c4-5cb6233dd468.png)
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Figure 1: Diagramme de corps libre du robot 
 
 À la figure 1, il est possible de voir les diagrammes de corps libre du robot. L'équipe a décidé que la modélisation du système était relativement compliqué (DCL officiel). C'est pourquoi elle a décidé de simplifier le diagramme pour correspondre au DCL simplifié de la figure 1. Le système simplifié a ensuite été modélisé dans le logiciel Pycharm en language python. Dépendamment de l'angle qB, le couple du moteur augmente considérablement. Cela est normal étant donné que les deux segments n'ont pas la même longueur, et que, par conséquent il y a un moment où la montée est bloqué par la glissière. À la figure 2, il est possible de voir la progression du couple moteur en fonction de l'angle qB. 
 ![image](https://user-images.githubusercontent.com/93997878/230173962-2c39c1c9-d87a-418f-9d3b-af74e77a84f5.png)
 
-Le modèle a quelques failles. Tout d'abord, seul un moteur est considéré alors que dans la réalité, deux moteurs supporte le poids du corps et un électroaimant (celui du corps) allège également la charge sur les moteurs pour maintenir le robot à la vertical. Ensuite, le système est simplifié à l'extrême. En réalité, il n'y a pas que deux segments qui permettent le mouvement mais 6 segments. 
+Le modèle a quelques failles. Tout d'abord, seul un moteur est considéré alors que dans la réalité, deux moteurs supportent le poids du corps et un électroaimant (celui du corps) allège également la charge sur les moteurs pour maintenir le robot à la vertical. Ensuite, le système est simplifié à l'extrême. En réalité, il n'y a pas que deux segments qui permettent le mouvement mais 6 segments. 
 
 
