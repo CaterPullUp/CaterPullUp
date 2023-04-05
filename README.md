@@ -31,7 +31,14 @@ Tout le code pour contrôller le robot se trouve dans le dossier *Code*, puis da
 ### Mécanique
 Toute la conception mécanique du robot se trouve dans le *ReadMe* du dossier *Mécanique*. Un lien au début du fichier mène au logiciel Onshape où se trouve l'intégralité des fichiers 3D. Un guide d'assemblage pour le robot est fourni dans le dossier *Mécanique*. Seuls les fichiers d'impression ne sont pas fournis.
 ### Électrique
+Le schéma électrique, le schéma d'architecture ainsi que le plan de test détaillé du circuit électrique se trouve dans le dossier.
 
+## Améliorations proposées
+- Incurver le support d'électroaimants pour les pattes afin de pouvoir grimper sur une cuve métallique 
+- Ajouter un système permettant aux pattes du robot pour rajouter un degré de liberté
+
+## Autre
+Pour toutes questions en lien avec le projet, l'équipe CaterPullUp sera ravi de répondre à vos questions.
 
 
 
