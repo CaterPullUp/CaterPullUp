@@ -14,8 +14,8 @@
 #include "Dynamixel.h"
 #include "Moteur.h"
 
-#define EXTEND_MOVEMENT_ANGLE 150
-#define RETRACT_MOVEMENT_ANGLE 210
+#define EXTEND_MOVEMENT_ANGLE 222
+#define RETRACT_MOVEMENT_ANGLE 138
 
 class DXL_Patte : public Moteur
 {

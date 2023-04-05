@@ -13,6 +13,7 @@
 #include "lib\Gabarits\Moteur.h"
 #include "lib\Peripheriques\PeripheriqueCom.h"
 #include "Dynamixel.h"
+#include "timer.h"
 
 #define MODE_MANUEL 1
 #define MODE_AUTO 2
@@ -78,6 +79,7 @@ class Caterpullup
 
         bool moteursArretes;
         int action;
+        Timer* timer;
 
     public:
         /**

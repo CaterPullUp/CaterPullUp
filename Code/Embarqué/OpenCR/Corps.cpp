@@ -65,7 +65,7 @@ bool Corps::baisser()
     if(monte)
     {
         ((DXL_Corps *)moteur)->go_to_position(ANGLE_BAISSER);
-        monte = false;;
+        monte = false;
 
         return false;
     }

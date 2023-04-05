@@ -16,7 +16,7 @@ DXL_Corps::DXL_Corps(Dynamixel2Arduino* dxl_, int id_)// : Moteur(pin)
     vitesse = VITESSE_CORPS;
     pin = DXL_DIR_PIN;
 
-    //init();
+    init();
 }
 
 void DXL_Corps::init()
@@ -56,7 +56,6 @@ bool DXL_Corps::is_movement_finished()
         return true;
     }
 
-
     DEBUG_SERIAL.print(id);
     DEBUG_SERIAL.print("present : ");
     DEBUG_SERIAL.println(current_angle);
@@ -93,6 +92,7 @@ float DXL_Corps::currentAngle()
 
 void DXL_Corps::positionInitiale()
 {
+    DEBUG_SERIAL.println("posInit corps");
     goal_angle = ANGLE_MONTER;
     dxl->setGoalPosition(id, goal_angle, UNIT_DEGREE);
     finished_movement = false;
