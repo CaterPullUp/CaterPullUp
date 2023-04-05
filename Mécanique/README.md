@@ -23,3 +23,11 @@ L'actuateur linéaire sert à aider une patte à soutenir le corps lorsque l'aut
 Le corps de CaterPullUp est découpé au laser dans du bois. Chaque composante de CaterPullUp a sa propre place sur le corps avec des trous pépercer à la découpe laser.
 
 ![Corps mi-session](https://user-images.githubusercontent.com/91679469/220228163-77db5452-5665-4c26-a011-d5c62c0b76ea.png)
+
+## Calculs pour la conception
+### Déflection maximale de la crémaillère sans glissière. 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+\(E=mc^2\)，$$x_{1,2} = \frac{-b \pm \sqrt{b^2-4ac}}{2b}.$$
+$d_{max} = \frac{F*L^3}{3*E*I}$
+
+![\Large Déflection=\frac{-j\pm\sqrt{j^2-4ac}}{2a}](https://latex.codecogs.com/svg.latex?x%3D%5Cfrac%7B-b%5Cpm%5Csqrt%7Bb%5E2-4ac%7D%7D%7B2a%7D)
