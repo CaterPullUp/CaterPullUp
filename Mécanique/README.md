@@ -26,6 +26,8 @@ Le corps de CaterPullUp est découpé au laser dans du bois. Chaque composante d
 
 ## Calculs pour la conception
 ### Déflection maximale de la crémaillère sans glissière. 
+![image](https://user-images.githubusercontent.com/93997878/230128710-629a4dca-6900-4858-b513-a47c867ad3b3.png)
+
  
  $d_{max} = \frac{F L^3}{3 E I} = 11,009\ mm$
 
