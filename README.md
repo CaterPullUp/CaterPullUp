@@ -29,7 +29,7 @@ Le robot se déplace à l'aide de deux pattes ayant deux degrés de liberté. Il
 ### Code
 Tout le code pour contrôller le robot se trouve dans le dossier *Code*, puis dans le dossier *Embarqué*. Ensuite le code du Bluetooth est dans le dossier *ESP32* alors que tout le reste du code se trouve dans le dossier *OpenCr*.
 ### Mécanique
-Toute la conception mécanique du robot se trouve dans le *ReadMe* du dossier *Mécanique*. Un lien au début du fichier mène au logiciel Onshape où se trouve l'intégralité des fichier 3D. Un guide d'assemblage pour le robot est fourni dans le dossier *Mécanique*. Seuls les fichier d'impression ne sont pas fournis.
+Toute la conception mécanique du robot se trouve dans le *ReadMe* du dossier *Mécanique*. Un lien au début du fichier mène au logiciel Onshape où se trouve l'intégralité des fichiers 3D. Un guide d'assemblage pour le robot est fourni dans le dossier *Mécanique*. Seuls les fichiers d'impression ne sont pas fournis.
 ### Électrique
 
 
