@@ -46,3 +46,39 @@ $F = ma = 1.962\ \mathrm{N}$
 
 $E = 2.5\times10^6\ \mathrm{Pa}$
 
+Une déflexion de $1,1\ \mathrm{cm}$ est plutôt considérable sachant que la crémaillère est en PLA et est relativement courte. Pour empêcher une telle déflexion, l'équipe a décidé d'insérer la crémaillère dans une glissière réduisant ainsi la longueur L a une longueur suffisamment courte pour réduire la déflexion pratiquement à une valeur nulle. Voici à quoi ressemble le système de crémaillère final: 
+
+<p align="justify">
+    <img src="https://user-images.githubusercontent.com/93997878/230170310-50b90960-2c5d-4ecd-b2da-823ab6590e82.png" width="500" />
+</p>
+
+
+
+### Le couple maximal du moteur XL est-il suffisant pour l'application de la crémaillère?
+Trouver la force normale: $F_{normal} = F = 1,962\ \mathrm{N}$
+
+Trouver la force de friction: $F_{f} = F_{normal} *tan(&alpha;) = 0,717\ \mathrm{N}$
+
+où 
+
+$&alpha; = angle\ de\ pression\ de\ l'engrenage = 20\ \mathrm{degrés}$
+
+
+
+Trouver le coefficient de frottement causé par les forces: $&mu; = \frac{F_{f}}{F_{normal}} = 0,365\$
+
+Trouver le couple nécessaire pour soulever la crémaillère: $T = F_{normal} *r_{engrenage} *&mu; = 0,007\ \mathrm{Nm}$
+
+où
+
+$r_{engrenage} = 0,01\ \mathrm{m}$
+
+Comme $0,007\ \mathrm{Nm}$ est inférieur à $1\ \mathrm{Nm}$ soit le couple maximal toléré par le moteur, le moteur n'aura aucune difficulté à soulever la crémaillère.
+
+### Le couple maximal du moteur XM est-il suffisant pour soulever le robot
+![image](https://user-images.githubusercontent.com/93997878/230193524-332110be-6884-417c-95c4-5cb6233dd468.png)
+
+
+![image](https://user-images.githubusercontent.com/93997878/230173962-2c39c1c9-d87a-418f-9d3b-af74e77a84f5.png)
+
+
