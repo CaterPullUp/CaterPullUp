@@ -9,7 +9,7 @@ Timer::Timer(){
     deadline_ = 0;
     enable_ = false;
     nb_rep_ = INFINITE_REPETITION;
-    reamining_rep_ = INFINITE_REPETITION;
+    remaining_rep_ = INFINITE_REPETITION;
     callback_ = NULL;
 }
 
@@ -27,7 +27,7 @@ void Timer::init(/*void (*callback)(), */unsigned long delay_millis, int nb_rep)
 }
 
 /**
- * @brief démarre le timer et initialise le temps de dépar et la temps d'arrêt
+ * @brief démarre le timer et initialise le temps de départ et la temps d'arrêt
  * 
  */
 void Timer::start(){
@@ -39,7 +39,7 @@ void Timer::start(){
     if (!enable_){
         enable_ = true;
         deadline_ = millis() + delay_;
-        reamining_rep_ = nb_rep_;
+        remaining_rep_ = nb_rep_;
     }
 }
 
@@ -66,10 +66,10 @@ bool Timer::update(){
     if(enable_ && millis() > deadline_/* && (reamining_rep_ == -1 || reamining_rep_ > 0)*/){
         //callback_();
         if(nb_rep_ != -1){
-            reamining_rep_--;
+            remaining_rep_--;
         }
 
-        if(reamining_rep_ == 0){
+        if(remaining_rep_ == 0){
                 stop();
         }
         else{

@@ -13,7 +13,7 @@ private:
     unsigned long deadline_;
     bool enable_;
     int nb_rep_;
-    int reamining_rep_;
+    int remaining_rep_;
 
 public:
     Timer();

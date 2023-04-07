@@ -345,7 +345,7 @@ void Caterpullup::gererGUI()
     case AVANCER_DISTANCE:
         //float distance = //valeur dans le GUI
         //calculerNbSequences(distance);
-        nbSequences = 3;
+        nbSequences = 3;            ///
         mode = MODE_AUTO;
         break;
 
@@ -415,6 +415,7 @@ void Caterpullup::gererEtat()
                 patteAvant->desactiverElectro();
                 timer->start();
                 DEBUG_SERIAL.println("case avancer patte av");
+
                 if (timer->update() && patteAvant->etirer())
                 {
                     patteAvant->activerElectro();
@@ -433,8 +434,9 @@ void Caterpullup::gererEtat()
             case MONTER_CORPS:
 
                 corps->desactiverElectro();
+                timer->start();
 
-                if (corps->monter())
+                if (timer->update() && corps->monter())
                 {
                     sequence_robot = AVANCER_CORPS;
 
@@ -452,6 +454,7 @@ void Caterpullup::gererEtat()
                 DEBUG_SERIAL.println(dxl->getPresentPosition(2, UNIT_DEGREE));
                 patteAvantRepliee = patteAvant->replier();
                 patteArriereEtiree = patteArriere->etirer();
+
                 if (patteAvantRepliee && patteArriereEtiree)
                 {
                     sequence_robot = PREP_AVANCER_PATTE_ARR;
@@ -485,8 +488,9 @@ void Caterpullup::gererEtat()
             case AVANCER_PATTE_ARRIERE:
 
                 patteArriere->desactiverElectro();
+                timer->start();
 
-                if (patteArriere->replier())
+                if (timer->update() && patteArriere->replier())
                 {
                     patteArriere->activerElectro();
 
@@ -521,7 +525,9 @@ void Caterpullup::gererEtat()
 
                 corps->desactiverElectro();
 
-                if (corps->monter())
+                timer->start();
+
+                if (timer->update() && corps->monter())
                 {
                     sequence_robot = PREP_AVANCER_PATTE_AV;
                     mode = MODE_MANUEL;
@@ -534,7 +540,9 @@ void Caterpullup::gererEtat()
 
                 patteArriere->desactiverElectro();
 
-                if(patteArriere->replier())
+                timer->start();
+
+                if(timer->update() && patteArriere->replier())
                 {
                     patteArriere->activerElectro();
                     sequence_robot = MONTER_CORPS;
