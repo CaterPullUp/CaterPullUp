@@ -26,10 +26,10 @@ Caterpullup::Caterpullup(int _mode)
     /*dxl = new Dynamixel2Arduino(DXL_SERIAL, DXL_DIR_PIN);
     dxl->begin(DXL_BAUD_RATE);
     dxl->setPortProtocolVersion(DXL_PROTOCOL_VERSION);*/
-    patteAvant = new Patte(dxl, 12, 1, 105, 1);
-   // patteAvant = new Patte(dxl, 12, 1, 185, 1);
-   // patteArriere = new Patte(dxl, 13, 2, 95, -1);
-    patteArriere = new Patte(dxl, 13, 2, 15, -1);
+    //patteAvant = new Patte(dxl, 12, 1, 105, 1);
+    patteAvant = new Patte(dxl, 13, 2, 15, 1);
+    patteArriere = new Patte(dxl, 12, 1, 105, -1);
+    //patteArriere = new Patte(dxl, 13, 2, 15, -1);
     corps = new Corps(dxl, 14, 3);
 
     nbSequences = 0;
@@ -42,8 +42,10 @@ Caterpullup::Caterpullup(int _mode)
     action = AUCUNE;
 
     timer = new Timer();
+    //timer2 = new Timer();
 
     timer->init(2000,1);
+    //timer2->init(2000,1);
 }
 
 Caterpullup::~Caterpullup()
@@ -133,10 +135,11 @@ void Caterpullup::gererGUI()
             patteAvant->activerElectro();
         }
 
-        commande_GUI = ELECTRO_AVANT;   ///INACTIF
+        //commande_GUI = ELECTRO_AVANT;
+        commande_GUI = INACTIF;
         sequence_robot = INCONNU;
 
-        delay(2000);
+        //delay(2000);
 
         break;
 
@@ -161,10 +164,11 @@ void Caterpullup::gererGUI()
             DEBUG_SERIAL.println("electro corps active");
         }
 
-        commande_GUI = ELECTRO_CORPS;     ///INACTIF
+        //commande_GUI = ELECTRO_CORPS;
+        commande_GUI = INACTIF;
         sequence_robot = INCONNU;
 
-        delay(2000);
+        //delay(2000);
 
         break;
 
@@ -188,10 +192,11 @@ void Caterpullup::gererGUI()
             DEBUG_SERIAL.println("electro arriere active");
         }
 
-        commande_GUI = ELECTRO_ARRIERE;     ///INACTIF
+        //commande_GUI = ELECTRO_ARRIERE;     
+        commande_GUI = INACTIF;
         sequence_robot = INCONNU;
 
-        delay(2000);
+        //delay(2000);
 
         break;
     
@@ -230,10 +235,11 @@ void Caterpullup::gererGUI()
 
         if(action == TERMINER)
         {
-            commande_GUI = PATTE_AVANT; ////INACTIF
+            //commande_GUI = PATTE_AVANT; 
+            commande_GUI = INACTIF;
             sequence_robot = INCONNU;
             action = AUCUNE;
-            delay(750);
+            //delay(750);
         }
 
         break;
@@ -272,11 +278,12 @@ void Caterpullup::gererGUI()
 
         if(action == TERMINER)
         {
-            commande_GUI = ELECTRO_CORPS;  ///INACTIF
+            commande_GUI = INACTIF;
+            //commande_GUI = ELECTRO_CORPS;
             sequence_robot = INCONNU;
             action = AUCUNE;
 
-            delay(750);
+            //delay(750);
         }
 
         break;
@@ -316,10 +323,11 @@ void Caterpullup::gererGUI()
 
         if(action == TERMINER)
         {
-            commande_GUI = PATTE_ARRIERE;   ///INACTIF
+            commande_GUI = INACTIF;
+            //commande_GUI = PATTE_ARRIERE;
             sequence_robot = INCONNU;
             action = AUCUNE;
-            delay(750);
+            //delay(750);
         }
 
         break;
@@ -369,10 +377,22 @@ void Caterpullup::gererEtat()
         {
             patteAvant->activerElectro();
             patteArriere->activerElectro();
-            sequence_robot = PREP_AVANCER_PATTE_AV;
+            
             DEBUG_SERIAL.println("moteur stop");
 
-            commande_GUI = AVANCER_AUTO;      ////////ENLEVER HABITUELLEMENT
+            timer->start();
+            DEBUG_SERIAL.println("started");
+            if (timer->update())
+            {
+                DEBUG_SERIAL.println("timer done");
+                //commande_GUI = SEQUENCE_COMPLETE;
+                //commande_GUI = PIGNON_CREMAILLERE;
+                //commande_GUI = AVANCER_AUTO;
+                sequence_robot = PREP_AVANCER_PATTE_AV;
+                commande_GUI = PATTE_AVANT;
+            }
+            
+            
         }
     }
 
@@ -384,7 +404,7 @@ void Caterpullup::gererEtat()
 
     else if (mode == MODE_AUTO)
     {
-        DEBUG_SERIAL.println("Auto");
+        //DEBUG_SERIAL.println("Auto");
         bool patteAvantRepliee;
         bool patteArriereEtiree;
         switch (sequence_robot)
@@ -399,19 +419,22 @@ void Caterpullup::gererEtat()
                 if (corps->baisser())
                 {
                     corps->activerElectro();
-                    sequence_robot = AVANCER_PATTE_AVANT;
-                    DEBUG_SERIAL.println("fin_baisser");
-                    if(nbSequences == -2) //etape par etape
-                    {
-                        mode = MODE_MANUEL;
-                        commande_GUI = INACTIF;
+                    timer->start();
+                    if (timer->update()){
+                      sequence_robot = AVANCER_PATTE_AVANT;
+                      DEBUG_SERIAL.println("fin_baisser");
+                      if(nbSequences == -2) //etape par etape
+                      {
+                          mode = MODE_MANUEL;
+                          commande_GUI = INACTIF;
+                      }
                     }
                 }
 
                 break;
 
             case AVANCER_PATTE_AVANT:
-                
+            
                 patteAvant->desactiverElectro();
                 timer->start();
                 DEBUG_SERIAL.println("case avancer patte av");
@@ -419,7 +442,7 @@ void Caterpullup::gererEtat()
                 if (timer->update() && patteAvant->etirer())
                 {
                     patteAvant->activerElectro();
-                    sequence_robot = MONTER_CORPS;
+                    sequence_robot = PREP_MONTER_CORPS;
                     
                     if(nbSequences == -2) //etape par etape
                     {
@@ -431,9 +454,19 @@ void Caterpullup::gererEtat()
 
                 break;
 
+            case PREP_MONTER_CORPS:
+
+            timer->start();
+            if(timer->update()){
+
+              corps->desactiverElectro();
+              sequence_robot = MONTER_CORPS;
+              
+            }
+
             case MONTER_CORPS:
 
-                corps->desactiverElectro();
+                //corps->desactiverElectro();
                 timer->start();
 
                 if (timer->update() && corps->monter())
@@ -446,7 +479,7 @@ void Caterpullup::gererEtat()
                         commande_GUI = INACTIF;
                     }
                 }
-
+                
                 break;
 
             case AVANCER_CORPS:
@@ -474,12 +507,18 @@ void Caterpullup::gererEtat()
                 if (corps->baisser())
                 {
                     corps->activerElectro();
-                    sequence_robot = AVANCER_PATTE_ARRIERE;
 
-                    if(nbSequences == -2) //etape par etape
+                    timer->start();
+
+                    if(timer->update())
                     {
-                        mode = MODE_MANUEL;
-                        commande_GUI = INACTIF;
+                        sequence_robot = AVANCER_PATTE_ARRIERE;
+    
+                        if(nbSequences == -2) //etape par etape
+                        {
+                            mode = MODE_MANUEL;
+                            commande_GUI = INACTIF;
+                        }
                     }
                 }
 
@@ -563,7 +602,6 @@ void Caterpullup::gererEtat()
 
         if (commande_GUI == ARRET_URGENCE)
         {
-          
             DEBUG_SERIAL.println("URGENCE");
             mode = MODE_MANUEL;
             commande_GUI = INACTIF;

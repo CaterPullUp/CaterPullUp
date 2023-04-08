@@ -46,6 +46,7 @@ enum etat_sequence
     INIT,
     PREP_AVANCER_PATTE_AV,
     AVANCER_PATTE_AVANT,
+    PREP_MONTER_CORPS,
     MONTER_CORPS,
     AVANCER_CORPS,
     PREP_AVANCER_PATTE_ARR,
@@ -80,6 +81,7 @@ class Caterpullup
         bool moteursArretes;
         int action;
         Timer* timer;
+        //Timer* timer2;
 
     public:
         /**
