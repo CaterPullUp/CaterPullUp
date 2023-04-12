@@ -10,19 +10,19 @@ Voici un aperçu de CaterPullUp.
 ## Pattes
 Voici un aperçu de la patte :
 
-![Patte mi-session](https://user-images.githubusercontent.com/91679469/220223213-e4558a8e-8ae1-4b7b-9225-d5021217ddf0.jpg)
+<img src="https://user-images.githubusercontent.com/91679469/220223213-e4558a8e-8ae1-4b7b-9225-d5021217ddf0.jpg" width="500" />
 
 Les deux pattes sont identiques. Celles-ci ont été conçues grâce à un mécanisme à 4 barres pour créer un mouvement fluide en utilisant un seul moteur par patte. 
 
 ## Actuateur linéaire
 L'actuateur linéaire sert à aider une patte à soutenir le corps lorsque l'autre fait son déplacement. Un moteur DYNAMIXEL XL430-W250-T est utilisé pour faire tourner l'engrenage qui fait déplacer linéairement la crémaillère.
 
-![Pignion Crémaillère mi-session](https://user-images.githubusercontent.com/91679469/220225627-d1ae4e33-2616-47a2-b0b4-71f066dd411d.png)
+<img src="https://user-images.githubusercontent.com/93997878/231550445-d06878f8-2173-4cb8-b057-ca0e53b0cbff.png" width="500" />
 
 ## Corps
 Le corps de CaterPullUp est découpé au laser dans du bois. Chaque composante de CaterPullUp a sa propre place sur le corps avec des trous pépercer à la découpe laser.
 
-![Corps mi-session](https://user-images.githubusercontent.com/91679469/220228163-77db5452-5665-4c26-a011-d5c62c0b76ea.png)
+<img src="https://user-images.githubusercontent.com/93997878/231550921-4e718bfc-9edf-420a-acac-f73ef3a0e0c8.png" width="500" />
 
 ## Calculs pour la conception
 ### Déflection maximale de la crémaillère sans glissière.
