@@ -37,7 +37,7 @@ Le schéma électrique, le schéma d'architecture ainsi que le plan de test dét
 1. Achetez la liste de composantes dans la liste de pièces (voir fichier joint) .
 2. Suivez le lien vers le dossier Onshape dans le ReadMe mécanique pour imprimer toutes les pièces en 3D.
 3. Assemblez le robot à l'aide du guide d'assemblage dans le dossier mécanique
-4. Soudez la plaquette électrique de montage à l'aide du schéma électrique dans le dossier électrique.
+4. Soudez la plaquette électrique de montage à l'aide du schéma électrique dans le dossier électrique et effectuer les branchements nécessaires.
 5. Télécharger le dépôt GitHub sur votre ordinateur
 6. Assurez-vous que la version de votre logiciel Python soit 3.5 ou plus récent
 7. Indiquez l'adresse Mac de votre ESP32 dans le code python.
