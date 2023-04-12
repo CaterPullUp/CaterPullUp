@@ -33,12 +33,31 @@ Toute la conception mécanique du robot se trouve dans le *ReadMe* du dossier *M
 ### Électrique
 Le schéma électrique, le schéma d'architecture ainsi que le plan de test détaillé du circuit électrique se trouve dans le dossier.
 
+## Étapes pour faire fonctionner le robot rapidement
+1. Achetez la liste de composantes dans la liste de pièces (voir fichier joint) .
+2. Suivez le lien vers le dossier Onshape dans le ReadMe mécanique pour imprimer toutes les pièces en 3D.
+3. Assemblez le robot à l'aide du guide d'assemblage dans le dossier mécanique
+4. Soudez la plaquette électrique de montage à l'aide du schéma électrique dans le dossier électrique.
+5. Télécharger le dépôt GitHub sur votre ordinateur
+6. Assurez-vous que la version de votre logiciel Python soit 3.5 ou plus récent
+7. Indiquez l'adresse Mac de votre ESP32 dans le code python.
+8. Construire et exécuter le code dans l'OpenCr.
+9. Ouvrir l'interface graphique et essayer les différentes fonctions pour déplacer le robot.
+
+
 ## Améliorations proposées
 - Incurver le support d'électroaimants pour les pattes afin de pouvoir grimper sur une cuve métallique 
 - Ajouter un système permettant aux pattes du robot pour rajouter un degré de liberté
 
 ## Autre
 Pour toutes questions en lien avec le projet, l'équipe CaterPullUp sera ravi de répondre à vos questions.
+### Auteurs
+- Logan Cadorette - cadl5028
+- Justin Coulombe - couj0902
+- Étienne Germain - gere3002
+- Marie-Claude Montgomery-Verrier – monm1101
+- Aude Regnault - rega2002
+- Mathieu Trudelle - trum1304
 
 
 
