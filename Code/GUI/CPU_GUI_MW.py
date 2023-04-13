@@ -26,8 +26,8 @@ except TimeoutError:
 
 else:
     print("Connection successfull")
-    data = (0xA1B2C3D4).to_bytes(4,"big")
-    print(data)
+    # data = (0xA1B2C3D4).to_bytes(4,"big")
+    # print(data)
 
 def macbinaire(mac_adress):
     '''
@@ -89,6 +89,30 @@ def modif_parite(msg):
         pass
     return msg
 
+def reconnect():
+    '''
+    Le GUI essaie de se reconnecter bluetooth lorsque la carte ne repond plus. Le GUI ne repond plus pendant la reconnexion.
+    INPUT:
+        Aucun input
+    OUTPUT:
+        Aucun output en soi, le GUI est reconnecte au bluetooth a la sortie de la fonction
+    '''
+    global s
+    connected = False
+    while(not connected):
+
+        try:
+            s.close()
+            s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+            s.connect((sensorMACAddress,port))
+            print("Reconnected")
+            connected = True
+            
+        except TimeoutError:
+            print("Connection error")
+
+
+
 #Configure
 window = Tk()
 
@@ -112,6 +136,7 @@ etat_corps = False
 etat_patteArriere = False
 etape_actuelle = 0
 electro_actives = 2
+en_action = False
 
 def show_frame(frame):
     frame.tkraise()
@@ -256,7 +281,10 @@ def chg_electroTop(img):
                 etat_electroTop = False
                 msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
                 print(msg)
-                s.send(msg.to_bytes(9,"big"))
+                try:
+                    s.send(msg.to_bytes(9,"big"))
+                except socket.error:
+                    reconnect()
                     
     else:
         if etat_patteAvant:
@@ -271,7 +299,10 @@ def chg_electroTop(img):
         electro_actives+=1
         msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
         print(msg)
-        s.send(msg.to_bytes(9,"big"))
+        try:
+            s.send(msg.to_bytes(9,"big"))
+        except socket.error:
+            reconnect()
 
 def chg_electroMid(img):
     '''
@@ -301,7 +332,10 @@ def chg_electroMid(img):
             etat_electroMid = False
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
     else:
         if etat_corps:
             image = Image.open('./midActifVert.png')
@@ -313,7 +347,10 @@ def chg_electroMid(img):
             electro_actives+=1
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
         else:
             messagebox.showerror('Action impossible', "Descendre d'abord le corps", icon='error')
         
@@ -345,7 +382,10 @@ def chg_electroBas(img):
             etat_electroBas = False
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
     else:
         if etat_patteArriere:
             image = Image.open('./basActifVert.png')
@@ -359,7 +399,10 @@ def chg_electroBas(img):
         electro_actives += 1
         msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
         print(msg)
-        s.send(msg.to_bytes(9,"big"))
+        try:
+            s.send(msg.to_bytes(9,"big"))
+        except socket.error:
+            reconnect()
 
 def move_patteAvant(img):
     '''
@@ -383,7 +426,10 @@ def move_patteAvant(img):
             num_fonction = 2
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
         
     else:
         if etat_electroTop:
@@ -397,7 +443,10 @@ def move_patteAvant(img):
             num_fonction = 1
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
 
 def move_Corps(img):
     '''
@@ -421,7 +470,10 @@ def move_Corps(img):
             num_fonction = 6
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
         
     else:
         if etat_electroMid:
@@ -435,7 +487,10 @@ def move_Corps(img):
             num_fonction = 5
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
 
 def move_patteArriere(img):
     '''
@@ -459,7 +514,10 @@ def move_patteArriere(img):
             num_fonction = 4
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
         
     else:
         if etat_electroBas:
@@ -473,36 +531,12 @@ def move_patteArriere(img):
             num_fonction = 3
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
-            s.send(msg.to_bytes(9,"big"))
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
     
-def sequence():
-    i=1
-    num_fonction = 15
-    msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
-    print(msg)
-    s.send(msg.to_bytes(9,"big"))
 
-def etapes(progbar_img):
-    '''
-    Permet d'avancer etape par etape de la sequence le robot et de changer la barre de progression en consideration.
-    INPUT:
-        progbar_img: Instance de la classe Label associee a l'image de la barre de progression
-    OUTPUT:
-        Aucun output en soi
-    '''
-    global etape_actuelle
-    if etape_actuelle != 6:
-        etape_actuelle += 1
-    else:
-        etape_actuelle = 0
-    image = Image.open(f'./progbar_{etape_actuelle}.png')
-    image = image.resize((int(image.size[0]/2),int(image.size[1]/2)))
-    auto_win.new_progbar = ImageTk.PhotoImage(image)
-    progbar_img.configure(image=auto_win.new_progbar)
-    num_fonction = 16
-    msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
-    print(msg)
-    s.send(msg.to_bytes(9,"big"))
 
 #Partie du haut
 top = Frame(manual_win, width=1000,height=100,bg='#24b700')
@@ -513,7 +547,7 @@ mid = Frame(manual_win, width=1000, height=750, bg='white')
 mid.grid(columnspan=4, rowspan=5, row=1)
 
 ajout_logo('./chenille_nobg.png', 0, 3, 7)
-mode_lbl = Label(manual_win,text='Contrôle manuel',fg="white",bg='#24b700',font=('Arial',24,'bold'))
+mode_lbl = Label(manual_win,text='Manuel',fg="white",bg='#24b700',font=('Arial',24,'bold'))
 mode_lbl.grid(row=0,column=2)
 topimg = ajout_image('./topDesacRouge.png',1,1,5,stick=S,rowspan=1,pady=0)
 midimg = ajout_image('./midDesacRouge.png',2,1,5,stick='',rowspan=1,pady=0)
@@ -541,44 +575,87 @@ btn_electroArriere = Button(manual_win, command=lambda:chg_electroBas(basimg), t
 btn_electroArriere.grid(column=2,row=3,sticky=W)
 
 # Textbox input terminal
-text_box_manual = Text(manual_win, height = 45, width = 40, padx = 0, pady = 0)
-text_box_manual.insert(1.0, "Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
-text_box_manual.tag_configure('center', justify='center')
-text_box_manual.tag_add('center',1.0,"end")
+text_box_manual = Text(manual_win, height = 45, width = 40, padx = 0, pady = 0,wrap=WORD)
+text_box_manual.insert(INSERT, "Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
+#text_box_manual.tag_configure('center', justify='center')
+#text_box_manual.tag_add('center',1.0,"end")
 text_box_manual.grid(column=3, row= 1,rowspan=5)
 
 # AUTOMATIC   
-def arret():
-    num_fonction = 17
-    msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
-    print(msg)
-    s.send(msg.to_bytes(9,"big"))
-
-def aller_distance(lbl,new_text,distance):
+def arret(icon_name,lbl):
     '''
-    Permet de faire avancer le robot d'une certaine distance et d'afficher cette distance a parcourir
-    INPUTS:
-        lbl: Element qui permet d'afficher la distance a parcourir 
-        new_text: Texte a afficher dans l'element lbl
-        distance: Distance a parcourir
+    Permet d'envoyer un message d'arret au robot. Cela permet d'arreter l'action en cours.
+    INPUT:
+        icon_name: icone d'avancement du robot
+    OUTPUT:
+        Aucun output en soi, mais arrete le robot dans son action en cours
+    '''
+    global en_action
+    if not en_action:
+        messagebox.showerror('Action impossible', "Le robot n'est pas en action", icon='error')
+    else:
+        icon = Image.open("fleche_videR.png")
+        icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
+        auto_win.fleche = ImageTk.PhotoImage(icon)
+        icon_name.configure(image=auto_win.fleche)
+        lbl.config(text = 'Le robot est immobile')
+        num_fonction = 17
+        msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
+        en_action=False
+        print(msg)
+        try:
+            s.send(msg.to_bytes(9,"big"))
+        except socket.error:
+            reconnect()
+
+def sequence():
+    '''
+    Permet d'envoyer une commande au robot d'executer une seule sequence.
+    INPUT:
+        icon_name: icone d'avancement du robot
+    OUTPUT:
+        Aucun output en soi, mais envoie la commande de sequence au robot
+    '''
+    global en_action
+    if en_action:
+        messagebox.showerror('Action impossible', "Le robot est déjà en action!", icon='error')
+    else:
+        num_fonction = 15
+        msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
+        print(msg)
+        try:
+            s.send(msg.to_bytes(9,"big"))
+        except socket.error:
+            reconnect()
+
+def etapes(progbar_img):
+    '''
+    Permet d'avancer etape par etape de la sequence le robot et de changer la barre de progression en consideration.
+    INPUT:
+        progbar_img: Instance de la classe Label associee a l'image de la barre de progression
     OUTPUT:
         Aucun output en soi
     '''
-    #if distance.replace('.','',1).isdigit():
-    if distance.isdigit():
-        dist_parcour = int(distance)
-        if dist_parcour >= 4000:
-            lbl.config(text = 'Erreur, max 4000')
-        else:
-            lbl.config(text = new_text)
-            num_fonction = 18
-            msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction,dist_parcour))
-            print(msg)
-            s.send(msg.to_bytes(9,"big"))
+    global etape_actuelle
+    global en_action
+    if en_action:
+        messagebox.showerror('Action impossible', "Le robot est déjà en action!", icon='error')
     else:
-        lbl.config(text = 'Erreur')
-    entry_log.delete(0, END)
-    num_fonction = 18
+        if etape_actuelle != 6:
+            etape_actuelle += 1
+        else:
+            etape_actuelle = 0
+        image = Image.open(f'./progbar_{etape_actuelle}.png')
+        image = image.resize((int(image.size[0]/2),int(image.size[1]/2)))
+        auto_win.new_progbar = ImageTk.PhotoImage(image)
+        progbar_img.configure(image=auto_win.new_progbar)
+        num_fonction = 16
+        msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
+        print(msg)
+        try:
+            s.send(msg.to_bytes(9,"big"))
+        except socket.error:
+            reconnect()
 
 def ajout_image_auto(path,row,column,ratio,stick=NW,rowspan=1,padx=20,pady=0):
     '''
@@ -628,39 +705,57 @@ def ajout_icone_auto(url, row, column, stick, funct,height=310, width=130,ratiox
     icon_label.grid(column=column, row=row, sticky=stick,rowspan=rowspan)
     return icon_label
 
-def avancer_auto(icon_name):
+def avancer_auto(icon_name,lbl,new_text,distance):
     '''
-    Permet de faire avancer sans arret le robot ou d'arreter le mouvement sans arret du robot dependemment si l'icone etait prealablement activer ou non.
+    Permet de faire avancer sans arret le robot ou d'arreter le mouvement sans arret du robot dependemment si l'icone etait prealablement active ou non.
     Envoie aussi un message pour mentionner la fonction d'avancer ou d'arreter le mouvement continu.
     INPUT:
         icon_name: Instance de la class Button associee a l'icone
     OUTPUT:
         Aucun output en soi
     '''
-    global Avancer
-    if Avancer:
-        icon = Image.open("fleche_videR.png")
-        icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
-        auto_win.fleche = ImageTk.PhotoImage(icon)
-        icon_name.configure(image=auto_win.fleche)
-        num_fonction = 7
-        #num_fonction = 14
-
-        Avancer = False
-        msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
-        print(msg)
-        s.send(msg.to_bytes(9,"big"))
+    global en_action
+    if en_action:
+        messagebox.showerror('Action impossible', "Le robot est déjà en action!", icon='error')
     else:
-        icon = Image.open("fleche_pleineV.png")
-        icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
-        auto_win.fleche = ImageTk.PhotoImage(icon)
-        icon_name.configure(image=auto_win.fleche)
-        num_fonction = 16
-        #num_fonction = 13
-        Avancer = True
-        msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
-        print(msg)
-        s.send(msg.to_bytes(9,"big"))
+        if distance == "":
+            lbl.config(text = 'Le robot avance sans arrêt')
+            icon = Image.open("fleche_pleineV.png")
+            icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
+            auto_win.fleche = ImageTk.PhotoImage(icon)
+            icon_name.configure(image=auto_win.fleche)
+            num_fonction = 13
+            msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
+            print(msg)
+            
+            try:
+                s.send(msg.to_bytes(9,"big"))
+            except socket.error:
+                reconnect()
+            en_action = True
+
+        elif distance.isdigit():
+            dist_parcour = int(distance)
+            if dist_parcour >= 4000:
+                lbl.config(text = 'Erreur, max 4000 mm')
+            else:
+                lbl.config(text = new_text)
+                icon = Image.open("fleche_pleineV.png")
+                icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
+                auto_win.fleche = ImageTk.PhotoImage(icon)
+                icon_name.configure(image=auto_win.fleche)
+                num_fonction = 18
+                msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction,dist_parcour))
+                print(msg)
+                try:
+                    s.send(msg.to_bytes(9,"big"))
+                except socket.error:
+                    reconnect()
+                en_action = True
+        
+        else:
+            lbl.config(text = 'Erreur')
+        entry_log.delete(0, END)
 
 #Partie du haut
 top = Frame(auto_win, width=1000,height=100,bg='#24b700')
@@ -668,50 +763,51 @@ top.grid(columnspan=4, rowspan=1, row=0)
 
 #Partie Centrale
 mid = Frame(auto_win, width=1000, height=750, bg='white')
-mid.grid(columnspan=4, rowspan=7, row=1)
+mid.grid(columnspan=5, rowspan=7, row=1)
 
 #Controle du robot
 ajout_image_auto('./chenille_nobg.png', 0, 3, 7,stick = E)
-mode_lbl = Label(auto_win,text='Contrôle automatique',fg="white",bg='#24b700',font=('Arial',24,'bold'))
+mode_lbl = Label(auto_win,text='Automatique',fg="white",bg='#24b700',font=('Arial',24,'bold'))
 mode_lbl.grid(row=0,column=2)
-ajout_image_auto('./CPU_robot.png', 2, 1, 2.1,rowspan=4,stick=N,padx=0)
+ajout_image_auto('./CPU_robot.png', 1, 1, 2.1,rowspan=5,stick=S,padx=0)
 
-avancer = ajout_icone_auto('fleche_videR.png', 3, 0, '', lambda:avancer_auto(avancer),height=350, width=110,ratiox=2.5,ratioy=2.5,rowspan=2)
+avancer = ajout_icone_auto('fleche_videR.png', 2, 0, S, lambda:avancer_auto(avancer,lbl_distance, f"Distance à parcourir:\n {entry_log.get()} mm",entry_log.get()),height=200, width=110,ratiox=2.5,ratioy=2.5,rowspan=3)
 avancer_lbl = Label(auto_win,text=' Avancer',bg='white',font=('Arial',20))
 avancer_lbl.grid(column=0,row=5,sticky=N)
 
-sequence_bar = ajout_icone_auto('./Sequence.png',1,0,stick = S,funct = lambda:sequence(), height=70, width=140)
-sequence_lbl = Label(auto_win,text='Sequence ',bg='white',font=('Arial',20))
-sequence_lbl.grid(column=0,row=2,sticky=N)
+sequence_bar = ajout_icone_auto('./Sequence.png',1,0,stick = '',funct = lambda:sequence(), height=70, width=140)
+sequence_lbl = Label(auto_win,text='Sequence ',bg='white',font=('Arial',16))
+sequence_lbl.grid(column=0,row=1,sticky=S)
 
-etape = ajout_icone_auto('./etape_par_etape.png',1,2,stick = S, funct = lambda:etapes(prog_bar), height=70, width=140)
-etape_lbl = Label(auto_win,text=' Par étape',bg='white',font=('Arial',20))
-etape_lbl.grid(column=2,row=2,sticky=N)
+etape = ajout_icone_auto('./etape_par_etape.png',1,2,stick = '', funct = lambda:etapes(prog_bar), height=70, width=140)
+etape_lbl = Label(auto_win,text=' Par étape',bg='white',font=('Arial',16))
+etape_lbl.grid(column=2,row=1,sticky=S)
 
 prog_bar = ajout_image_auto('./progbar_0.png',1,1,2,stick = '',pady=0,padx=0)
 
-btn_distance = Button(auto_win,command=lambda:aller_distance(lbl_distance, f"Distance à parcourir:\n {entry_log.get()} mm",entry_log.get()),text="Entrer une distance (mm)", bg="#24b700",fg="white")
-btn_distance.grid(column=2,row=3,sticky=S)
-lbl_distance = Label(auto_win, text=" ",font=('Arial',14), fg ="black", bg="white")
+lbl_distance = Label(auto_win, text="Le robot est immobile",font=('Arial',14), fg ="black", bg="white")
 lbl_distance.grid(column=2, row=4, sticky='')
 
-stop = ajout_icone_auto('./stop.png',5,1,stick=S,height=110,width=120,funct=lambda:arret(),ratiox=1.5,ratioy=1.5)
-stop_lbl = Label(auto_win,text='ARRÊT',bg='white',font=('Arial',20))
-stop_lbl.grid(column=1,row=6,sticky=N)
+stop = ajout_icone_auto('./stop.png',6,1,stick='',height=110,width=120,funct=lambda:arret(avancer,lbl_distance),ratiox=1.5,ratioy=1.5)
+stop_lbl = Label(auto_win,text='ARRÊT',bg='white',font=('Arial',18))
+stop_lbl.grid(column=1,row=6,sticky=S)
 
 entry_log = Entry(auto_win,width=15,highlightthickness=3)
-entry_log.grid(column=2, row=4,sticky=N,pady=0)
+entry_log.grid(column=0, row=6,sticky=N,pady=0)
 entry_log.config(highlightbackground = "black", highlightcolor= "black")
+entry_lbl = Label(auto_win, text='Entrer distance(mm)',bg='white',font=('Arial,14'))
+entry_lbl.grid(column=0,row=5,sticky=S)
 
 btn_manual = Button(auto_win,command=lambda:show_manual(manual_win),text='Changer pour manuel',bg='white',fg='black')
 btn_manual.grid(column=0,row=0,sticky=W,padx=20)
 
 # Textbox input terminal
-text_box = Text(auto_win, height = 45, width = 40, padx = 0, pady = 0)
-text_box.insert(1.0, "Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
-text_box.tag_configure('center', justify='center')
-text_box.tag_add('center',1.0,"end")
-text_box.grid(column=3, row= 1,rowspan=7)
+text_box = Text(auto_win, height = 45, width = 40, padx = 0, pady = 0,wrap=WORD)
+text_box.insert(INSERT, "Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
+#text_box.config(text="Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
+#text_box.tag_configure('center', justify='center')
+#text_box.tag_add('center',1.0,"end")
+text_box.grid(column=3, row= 1,rowspan=7,sticky=W)
 
 show_manual(manual_win)
 
