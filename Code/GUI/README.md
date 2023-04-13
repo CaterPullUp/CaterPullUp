@@ -1,15 +1,12 @@
-Le GUI permet d'envoyer des commandes à partir de l'interface jusqu'au robot et ce grâce à une connexion sans fil Bluetooth. Pour l'instant, le code du GUI ne permet   que d'éventuellement pouvoir appeler des fonctions pour contrôler le robot et envoyer l'information grâce au module Bluetooth de la carte ESP32. Il est possible dans   le GUI d'accéder à deux fenêtres de contrôle distinctes. La fenêtre de contrôle automatique du robot permet de faire avancer le robot sans arrêt et de faire avancer 
-le robot d'une distance spécifiée. La fenêtre de contrôle manuel du robot permet de bouger individuellement les sections du robot (patte avant, corps, patte           arrière), activer et désactiver les électroaimants sur ces sections, faire avancer le robot étape par étape de la séquence d'un mouvement complet et exécuter une       séquence complète de mouvement. Un bouton d'arrêt permet d'arrêter tout mouvement en appuyant les pattes contre la surface à grimper et en activant les                 électroaimants  ce qui permet d'immobiliser le robot sur la surface.
-
 # Interface graphique
 
-L'interface graphique comprend deux fenêtres distinctes auxquelles il est possible d'avoir accès à partir du GUI. Une seule des deux fenêtre peut être ouverte à la fois, redant plus prévisible et sécuritaire l'utilisation du robot.
+Le GUI permet d'envoyer des commandes à partir de l'interface jusqu'au robot et ce grâce à une connexion sans fil Bluetooth. Il est possible dans   le GUI d'accéder à deux fenêtres de contrôle distinctes.Une seule des deux fenêtre peut être ouverte à la fois, rnedant plus prévisible et sécuritaire l'utilisation du robot. La fenêtre de contrôle automatique du robot permet de faire avancer le robot sans arrêt, d'une distance entrée, d'une séquence à la fois, la séquence étant toutes les étapes permettant de faire avancer le robot d'une seule longueur de patte, d'une étape de la séquence à la fois et d'arrêter le mouvement du robot. La fenêtre de contrôle manuel du robot permet de bouger individuellement les sections du robot, comprenant la patte avant, le corps avec l'actuateur linéaire et la patte arrière, ainsi que d'activer et désactiver les électroaimants du robot par sections. Des fenêtres d'erreur apparaissent lorsque le robot, en mode manuel, effectuerait une action dommageable pour le robot à la suite d'une commande. Une telle action serait par exemple de déplacer la patte avant du robot alors que ses électroaimants sont activés, pouvant ainsi potentillement briser le robot physiquement.
 
 ## Fenêtre pour l'utilisation manuelle
 
-
 Les différentes sections et composantes du robot peuvent être contrôlées individuellement à l'aide de la fenêtre d'utilisation manuelle.
-![Mode_Manuel](https://user-images.githubusercontent.com/94627446/228865142-49ab956e-d511-4c33-bd34-7541da7262c7.png)
+![controle_manuel](https://user-images.githubusercontent.com/94627446/231640123-2a4d3360-ad61-47b1-a2bb-98ad89a9d2e0.png)
+
 
 Les pattes et l'actuateur linéaire peuvent être déplacés individuellement et les électroaimants peuvent être activés et désactivés par section, le tout de façon sécuritaire en empêchant des configurations qui pourraient endommager le robot et ses composantes. La représentation visuelle du robot permet de voir si les pattes et l'actuateur sont séparément en extension ou rétractés et quels électroaimants sont activés ou désactivés.
 D'abord la patte arrière rétractée avec les électroaimants activés ou désactivés:
@@ -28,5 +25,6 @@ Des boîtes de message d'erreurs apparaissent lorsque l'utilisateur appuie sur u
 ![errerur_bouger](https://user-images.githubusercontent.com/94627446/228865240-c2bc4be5-c18b-4249-8ae5-c49529b22be3.png)
 
 ## Fenêtre pour l'utilisation automatique
-La fenêtre automatique permet de contrôler le robot pour qu'il accomplisse différentes actions en lien direct avec le déplacement linéaire du robot sur la surface métallique. Les options de contrôlent incluent le déplacement du robot sans arrêt avec le bouton Avancer, le déplacement une séquence à la fois avec le bouton Séquence, le déplacement une étape de la séquence à la fois avec le bouton Étapes, le déplacement en entrant une distance avec le bouton Entrer une distance (mm) et arrêter le robot à tout moment avec le bouton ARRÊT.
-![Auto_GUI](https://user-images.githubusercontent.com/94627446/228856085-ac5462e7-6c2c-4721-94dc-9d6942b756be.png)
+La fenêtre automatique permet de contrôler le robot pour qu'il accomplisse différentes actions en lien direct avec le déplacement linéaire du robot sur la surface métallique. Les options de contrôlent incluent le déplacement du robot sans arrêt avec le bouton Avancer, le déplacement une séquence à la fois avec le bouton Séquence, le déplacement une étape de la séquence à la fois avec le bouton Étapes, le déplacement en entrant une distance puis en appuyant sur le bouton Avancer et arrêter le robot à tout moment avec le bouton ARRÊT.
+![controle_automatique](https://user-images.githubusercontent.com/94627446/231640151-8f31da65-d9af-4f6e-9f83-932d29a607ed.png)
+
