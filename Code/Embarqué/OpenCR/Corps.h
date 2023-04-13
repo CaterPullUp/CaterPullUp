@@ -29,6 +29,7 @@ class Corps
 
         bool monter();
         bool baisser();
+        bool rapprocher();
         void activerElectro();
         void desactiverElectro();
 

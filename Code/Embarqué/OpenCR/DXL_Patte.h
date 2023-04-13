@@ -7,7 +7,7 @@
 #ifndef DXL_PATTE_H
 #define DXL_PATTE_H
 
-#define VITESSE_PATTE 5
+#define VITESSE_PATTE 9
 
 #include "Arduino_function.h"
 

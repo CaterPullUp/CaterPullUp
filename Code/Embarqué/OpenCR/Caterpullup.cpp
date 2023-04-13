@@ -28,7 +28,7 @@ Caterpullup::Caterpullup(int _mode)
     dxl->setPortProtocolVersion(DXL_PROTOCOL_VERSION);*/
     //patteAvant = new Patte(dxl, 12, 1, 105, 1);
     patteAvant = new Patte(dxl, 13, 2, 15, 1);
-    patteArriere = new Patte(dxl, 12, 1, 105, -1);
+    patteArriere = new Patte(dxl, 12, 1, 200, -1);
     //patteArriere = new Patte(dxl, 13, 2, 15, -1);
     corps = new Corps(dxl, 14, 3);
 
@@ -44,7 +44,7 @@ Caterpullup::Caterpullup(int _mode)
     timer = new Timer();
     //timer2 = new Timer();
 
-    timer->init(2000,1);
+    timer->init(750,1);
     //timer2->init(2000,1);
 }
 
@@ -387,9 +387,9 @@ void Caterpullup::gererEtat()
                 DEBUG_SERIAL.println("timer done");
                 //commande_GUI = SEQUENCE_COMPLETE;
                 //commande_GUI = PIGNON_CREMAILLERE;
-                //commande_GUI = AVANCER_AUTO;
+                commande_GUI = AVANCER_AUTO;
                 sequence_robot = PREP_AVANCER_PATTE_AV;
-                commande_GUI = PATTE_AVANT;
+                //commande_GUI = PATTE_AVANT;
             }
             
             
@@ -421,16 +421,18 @@ void Caterpullup::gererEtat()
                     corps->activerElectro();
                     timer->start();
                     if (timer->update()){
-                      sequence_robot = AVANCER_PATTE_AVANT;
-                      DEBUG_SERIAL.println("fin_baisser");
-                      if(nbSequences == -2) //etape par etape
-                      {
-                          mode = MODE_MANUEL;
-                          commande_GUI = INACTIF;
+                      if(corps->rapprocher()){
+                        
+                        sequence_robot = AVANCER_PATTE_AVANT;
+                        DEBUG_SERIAL.println("fin_baisser");
+                        if(nbSequences == -2) //etape par etape
+                        {
+                            mode = MODE_MANUEL;
+                            commande_GUI = INACTIF;
+                        }
                       }
                     }
                 }
-
                 break;
 
             case AVANCER_PATTE_AVANT:
@@ -469,8 +471,11 @@ void Caterpullup::gererEtat()
                 //corps->desactiverElectro();
                 timer->start();
 
-                if (timer->update() && corps->monter())
+                //if (timer->update() && corps->monter())
+                if (timer->update())
                 {
+                  if(corps->monter())
+                  {
                     sequence_robot = AVANCER_CORPS;
 
                     if(nbSequences == -2) //etape par etape
@@ -478,6 +483,7 @@ void Caterpullup::gererEtat()
                         mode = MODE_MANUEL;
                         commande_GUI = INACTIF;
                     }
+                  }
                 }
                 
                 break;
@@ -532,29 +538,30 @@ void Caterpullup::gererEtat()
                 if (timer->update() && patteArriere->replier())
                 {
                     patteArriere->activerElectro();
-
-                    if(nbSequences == -2) //etape par etape
-                    {
-                        sequence_robot = RETOUR_DEPART;
-                        mode = MODE_MANUEL;
-                        commande_GUI = INACTIF;
-                    }
-
-                    else if (nbSequences == 1)
-                    {
-                        nbSequences -=1;
-                        sequence_robot = RETOUR_DEPART;
-                    }
-
-                    else if(nbSequences == -1)
-                    {
-                        sequence_robot = AVANCER_PATTE_AVANT;
-                    }
-
-                    else
-                    {
-                        nbSequences -= 1;
-                        sequence_robot = AVANCER_PATTE_AVANT;
+                    if(corps->rapprocher()){
+                        if(nbSequences == -2) //etape par etape
+                        {
+                            sequence_robot = RETOUR_DEPART;
+                            mode = MODE_MANUEL;
+                            commande_GUI = INACTIF;
+                        }
+    
+                        else if (nbSequences == 1)
+                        {
+                            nbSequences -=1;
+                            sequence_robot = RETOUR_DEPART;
+                        }
+    
+                        else if(nbSequences == -1)
+                        {
+                            sequence_robot = AVANCER_PATTE_AVANT;
+                        }
+    
+                        else
+                        {
+                            nbSequences -= 1;
+                            sequence_robot = AVANCER_PATTE_AVANT;
+                        }
                     }
                 }
 

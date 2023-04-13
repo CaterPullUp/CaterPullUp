@@ -17,7 +17,8 @@ using namespace ControlTableItem;
 #define VITESSE_CORPS 50
 
 #define ANGLE_MONTER 360
-#define ANGLE_BAISSER 260
+#define ANGLE_BAISSER 220
+#define ANGLE_RAPPROCHE 250
 
 class DXL_Corps : public Moteur
 {

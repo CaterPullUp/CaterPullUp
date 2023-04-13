@@ -79,6 +79,18 @@ bool Corps::baisser()
     return false;
 }
 
+bool Corps::rapprocher()
+{
+    ((DXL_Corps *)moteur)->go_to_position(ANGLE_RAPPROCHE);
+
+    if(estArrete())
+    {
+        return true;
+    }
+
+    return false;
+}
+
 void Corps::activerElectro()
 {
     electroaimant->activer();
