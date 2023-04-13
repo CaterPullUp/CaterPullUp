@@ -17,6 +17,7 @@ port = 1
 
 
 s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+s.settimeout(0.5)
 
 try:
     s.connect((sensorMACAddress,port))
@@ -98,7 +99,8 @@ def reconnect():
         Aucun output en soi, le GUI est reconnecte au bluetooth a la sortie de la fonction
     '''
     global s
-    connected = False
+    #connected = False
+    connected = True
     while(not connected):
 
         try:
@@ -115,6 +117,7 @@ def reconnect():
 
 #Configure
 window = Tk()
+window.title('CaterPullUp')
 
 window.geometry('+350+10')
 
@@ -142,8 +145,11 @@ def show_frame(frame):
     frame.tkraise()
 
 def show_manual(frame):
-    reset_manual()
-    frame.tkraise()
+    if en_action:
+        messagebox.showerror('Action impossible', "Le robot est déjà en action!", icon='error')
+    else:
+        reset_manual()
+        frame.tkraise()
 
 #WINDOW MANUAL 
 def ajout_logo(path,row,column,ratio):
@@ -599,8 +605,10 @@ def arret(icon_name,lbl):
         auto_win.fleche = ImageTk.PhotoImage(icon)
         icon_name.configure(image=auto_win.fleche)
         lbl.config(text = 'Le robot est immobile')
-        num_fonction = 17
-        msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
+        num_fonction = 15
+        # La reception veut une distance remplie de 1 en envoyant la commande d'arret
+        fill = 4095
+        msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction,fill))
         en_action=False
         print(msg)
         try:
@@ -620,7 +628,7 @@ def sequence():
     if en_action:
         messagebox.showerror('Action impossible', "Le robot est déjà en action!", icon='error')
     else:
-        num_fonction = 15
+        num_fonction = 13
         msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
         print(msg)
         try:
@@ -649,7 +657,7 @@ def etapes(progbar_img):
         image = image.resize((int(image.size[0]/2),int(image.size[1]/2)))
         auto_win.new_progbar = ImageTk.PhotoImage(image)
         progbar_img.configure(image=auto_win.new_progbar)
-        num_fonction = 16
+        num_fonction = 14
         msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
         print(msg)
         try:
@@ -738,13 +746,15 @@ def avancer_auto(icon_name,lbl,new_text,distance):
             dist_parcour = int(distance)
             if dist_parcour >= 4000:
                 lbl.config(text = 'Erreur, max 4000 mm')
+            elif dist_parcour < 80:
+                lbl.config(text = 'Erreur, min 80 mm')
             else:
                 lbl.config(text = new_text)
                 icon = Image.open("fleche_pleineV.png")
                 icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
                 auto_win.fleche = ImageTk.PhotoImage(icon)
                 icon_name.configure(image=auto_win.fleche)
-                num_fonction = 18
+                num_fonction = 16
                 msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction,dist_parcour))
                 print(msg)
                 try:
@@ -795,7 +805,7 @@ stop_lbl.grid(column=1,row=6,sticky=S)
 entry_log = Entry(auto_win,width=15,highlightthickness=3)
 entry_log.grid(column=0, row=6,sticky=N,pady=0)
 entry_log.config(highlightbackground = "black", highlightcolor= "black")
-entry_lbl = Label(auto_win, text='Entrer distance(mm)',bg='white',font=('Arial,14'))
+entry_lbl = Label(auto_win, text='Entrer distance (mm)',bg='white',font=('Arial,14'))
 entry_lbl.grid(column=0,row=5,sticky=S)
 
 btn_manual = Button(auto_win,command=lambda:show_manual(manual_win),text='Changer pour manuel',bg='white',fg='black')
@@ -811,6 +821,20 @@ text_box.grid(column=3, row= 1,rowspan=7,sticky=W)
 
 show_manual(manual_win)
 
+
+def reception():
+    try:
+        recep = s.recv(72)
+        print(recep)
+
+    except:
+        print('no message')
+    window.after(1000,reception)
+
+window.after(0, reception)
 window.mainloop()
+
+
+
 
 #s.close()
