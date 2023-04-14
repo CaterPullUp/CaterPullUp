@@ -9,7 +9,7 @@
 
 #if defined(ARDUINO_OpenCR)
 #include <Arduino.h>
-#define DEBUG_SERIAL Serial
+#define DEBUG_SERIAL Serial2
 #else
 #define digitalWrite(A,B)
 #define digitalRead(A)

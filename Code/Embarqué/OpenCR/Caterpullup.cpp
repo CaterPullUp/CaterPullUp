@@ -86,7 +86,15 @@ int Caterpullup::get_sequence_robot()
     return sequence_robot;
 }
 
-void Caterpullup::set_commande_GUI(enum commande_GUI_enum _etat)
+void Caterpullup::setNbSequences(int _nbSequences){
+    nbSequences = _nbSequences;
+}
+
+void Caterpullup::setArretComplet(bool _arretComplet){
+    arretComplet = _arretComplet;
+}
+
+void Caterpullup::set_commande_GUI(int _etat)
 {
     commande_GUI = _etat;
 }
@@ -100,14 +108,14 @@ void Caterpullup::gererGUI()
 {
     switch (commande_GUI)
     {
-
+    
+    
     case INACTIF:
 
         if(firstInactif)
         {
             envoyerMessage();
         }
-
         //if(//le GUI envoie un message)
         //{
             //recevoirMessage();
@@ -119,251 +127,99 @@ void Caterpullup::gererGUI()
 
         break;
 
-    case ELECTRO_AVANT:
+    case ETIRER_PATTE_AV:
 
-        if(patteAvant->electroActive())
-        {
-            //corps->baisser();
-            //corps->activerElectro();
-            //patteArriere->activerElectro();
-
-            patteAvant->desactiverElectro();
-        }
-
-        else if(!patteAvant->electroActive())
-        {
-            patteAvant->activerElectro();
-        }
-
-        //commande_GUI = ELECTRO_AVANT;
-        commande_GUI = INACTIF;
-        sequence_robot = INCONNU;
-
-        //delay(2000);
-
-        break;
-
-    case ELECTRO_CORPS:
-
-        if(corps->electroActive())
-        {
-            //patteAvant->activerElectro();
-            //patteArriere->activerElectro();
-
-            corps->desactiverElectro();
-
-            DEBUG_SERIAL.println("electro corps desactive");
-        }
-
-        else if(!corps->electroActive())
-        {
-            //corps->baisser();
-
-            corps->activerElectro();
-
-            DEBUG_SERIAL.println("electro corps active");
-        }
-
-        //commande_GUI = ELECTRO_CORPS;
-        commande_GUI = INACTIF;
-        sequence_robot = INCONNU;
-
-        //delay(2000);
-
-        break;
-
-    case ELECTRO_ARRIERE:
-
-        if(patteArriere->electroActive())
-        {
-            //corps->baisser();
-            //corps->activerElectro();
-            //patteAvant->activerElectro();
-
-            patteArriere->desactiverElectro();
-
-            DEBUG_SERIAL.println("electro arriere desactive");
-        }
-
-        else if(!patteArriere->electroActive())
-        {
-            patteArriere->activerElectro();
-
-            DEBUG_SERIAL.println("electro arriere active");
-        }
-
-        //commande_GUI = ELECTRO_ARRIERE;     
-        commande_GUI = INACTIF;
-        sequence_robot = INCONNU;
-
-        //delay(2000);
-
-        break;
-    
-    case PATTE_AVANT:
-
-        //corps->baisser();
-        //corps->activerElectro();
-        //patteArriere->activerElectro();
-        //patteAvant->desactiverElectro();
-
-        if(patteAvant->estEtire() && action == AUCUNE)
-        {
-            action = REPLIER;
-        }
-
-        else if(patteAvant->estReplie() && action == AUCUNE)
-        {
-          action = ETIRER;
-        }
-
-        if(action == REPLIER)
-        {
-            if(patteAvant->replier())
-            {
-                action = TERMINER;
-            } 
-        }
-
-        else if(action == ETIRER)
-        {
-            if(patteAvant->etirer())
-            {
-                action = TERMINER;
-            }
-        }
-
-        if(action == TERMINER)
-        {
-            //commande_GUI = PATTE_AVANT; 
+        if(patteAvant->etirer()){
             commande_GUI = INACTIF;
             sequence_robot = INCONNU;
-            action = AUCUNE;
-            //delay(750);
         }
-
         break;
 
-    case PIGNON_CREMAILLERE:
-
-        //patteArriere->activerElectro();
-        //patteAvant->activerElectro();
-        //corps->desactiverElectro();
-
-        if(corps->estBaisse() && action == AUCUNE)
-        {
-            action = MONTER;
-        }
-
-        else if(corps->estMonte() && action == AUCUNE)
-        {
-          action = BAISSER;
-        }
-
-        if(action == MONTER)
-        {
-            if(corps->monter())
-            {
-                action = TERMINER;
-            } 
-        }
-
-        else if(action == BAISSER)
-        {
-            if(corps->baisser())
-            {
-                action = TERMINER;
-            }
-        }
-
-        if(action == TERMINER)
-        {
+    case REPLIER_PATTE_AV:
+        if(patteAvant->replier()){
             commande_GUI = INACTIF;
-            //commande_GUI = ELECTRO_CORPS;
             sequence_robot = INCONNU;
-            action = AUCUNE;
-
-            //delay(750);
         }
-
         break;
 
-    case PATTE_ARRIERE:
-
-        //corps->baisser();
-        //corps->activerElectro();
-        //patteAvant->activerElectro();
-        //patteArriere->desactiverElectro();
-
-        if(patteArriere->estEtire() && action == AUCUNE)
-        {
-            action = REPLIER;
-        }
-
-        else if(patteArriere->estReplie() && action == AUCUNE)
-        {
-          action = ETIRER;
-        }
-
-        if(action == REPLIER)
-        {
-            if(patteArriere->replier())
-            {
-                action = TERMINER;
-            } 
-        }
-
-        else if(action == ETIRER)
-        {
-            if(patteArriere->etirer())
-            {
-                action = TERMINER;
-            }
-        }
-
-        if(action == TERMINER)
-        {
+    case ETIRER_PATTE_AR:
+        if(patteArriere->etirer()){
             commande_GUI = INACTIF;
-            //commande_GUI = PATTE_ARRIERE;
             sequence_robot = INCONNU;
-            action = AUCUNE;
-            //delay(750);
         }
-
         break;
 
-    case SEQUENCE_COMPLETE:
+    case REPLIER_PATTE_AR:
+        if(patteArriere->replier()){
+            commande_GUI = INACTIF;
+            sequence_robot = INCONNU;
+        }
+        break;
 
-        nbSequences = 1;
-        mode = MODE_AUTO;
+    case CORPS_BAISSER:
+        if(corps->baisser()){
+            commande_GUI = INACTIF;
+            sequence_robot = INCONNU;
+        }
+        break;
+
+    case CORPS_MONTER:
+        if(corps->monter()){
+            commande_GUI = INACTIF;
+            sequence_robot = INCONNU;
+        }
+        break;
+
+    case ACTIVER_ELECTRO_AV:
+        patteAvant->activerElectro();
+        commande_GUI = INACTIF;
+        sequence_robot = INCONNU;
+        break;
+
+    case DESACTIVER_ELECTRO_AV:
+        patteAvant->desactiverElectro();
+        commande_GUI = INACTIF;
+        sequence_robot = INCONNU;
+        break;
+
+    case ACTIVER_ELECTRO_CORPS:
+        corps->activerElectro();
+        commande_GUI = INACTIF;
+        sequence_robot = INCONNU;
+        break;
+
+    case DESACTIVER_ELECTRO_CORPS:
+        corps->desactiverElectro();
+        commande_GUI = INACTIF;
+        sequence_robot = INCONNU;
+        break;
+
+    case ACTIVER_ELECTRO_AR:
+        patteArriere->activerElectro();
+        commande_GUI = INACTIF;
+        sequence_robot = INCONNU;
+        break;
+
+    case DESACTIVER_ELECTRO_AR:
+        patteArriere->desactiverElectro();
+        commande_GUI = INACTIF;
+        sequence_robot = INCONNU;
         break;
 
     case ETAPE_PAR_ETAPE:
-
-        nbSequences = -2;
+        nbSequences = FIN_ETAPE;
         mode = MODE_AUTO;
         break;
 
-    case AVANCER_AUTO:
-
-        nbSequences = -1;
+    case COMMANDE_AUTO:
+        
+        if (nbSequences == 0){//Avancer sans arret
+            nbSequences = -1;           
+        }
         mode = MODE_AUTO;
-        break;
-
-    case AVANCER_DISTANCE:
-        //float distance = //valeur dans le GUI
-        //calculerNbSequences(distance);
-        nbSequences = 3;            ///
-        mode = MODE_AUTO;
-        break;
-
-    case ARRET_URGENCE:
-
-        commande_GUI = INACTIF;
         break;
     
     default:
-
         break;
     }
 }
@@ -387,9 +243,11 @@ void Caterpullup::gererEtat()
                 DEBUG_SERIAL.println("timer done");
                 //commande_GUI = SEQUENCE_COMPLETE;
                 //commande_GUI = PIGNON_CREMAILLERE;
-                commande_GUI = AVANCER_AUTO;
+                // commande_GUI = AVANCER_AUTO;
                 sequence_robot = PREP_AVANCER_PATTE_AV;
                 //commande_GUI = PATTE_AVANT;
+                commande_GUI = INACTIF;
+                mode = MODE_MANUEL;
             }
             
             
@@ -607,8 +465,10 @@ void Caterpullup::gererEtat()
                 break;
         }
 
-        if (commande_GUI == ARRET_URGENCE)
+        if (arretComplet)
         {
+            arretComplet=false;
+            Serial.print("ArretComplet case");
             DEBUG_SERIAL.println("URGENCE");
             mode = MODE_MANUEL;
             commande_GUI = INACTIF;

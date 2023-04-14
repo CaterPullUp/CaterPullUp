@@ -5,7 +5,7 @@
 ***/
 
 #ifndef CATERPULLUP_H
-#define CATERPPULLUP_H
+#define CATERPULLUP_H
 
 #include "Patte.h"
 #include "Corps.h"
@@ -15,8 +15,8 @@
 #include "Dynamixel.h"
 #include "timer.h"
 
-#define MODE_MANUEL 1
-#define MODE_AUTO 2
+#define MODE_MANUEL 0
+#define MODE_AUTO 1
 
 #define AUCUNE 0
 #define REPLIER 1
@@ -24,21 +24,30 @@
 #define MONTER 3
 #define BAISSER 4
 #define TERMINER 5
+#define FIN_ETAPE -2
 
 enum commande_GUI_enum
 {
     INACTIF,
-    ELECTRO_AVANT,
-    ELECTRO_CORPS,
-    ELECTRO_ARRIERE,
-    PATTE_AVANT,
-    PIGNON_CREMAILLERE,
-    PATTE_ARRIERE,
-    SEQUENCE_COMPLETE,
+    ETIRER_PATTE_AV,
+    REPLIER_PATTE_AV,
+    ETIRER_PATTE_AR,
+    REPLIER_PATTE_AR,
+    CORPS_BAISSER,
+    CORPS_MONTER,
+    ACTIVER_ELECTRO_AV,
+    DESACTIVER_ELECTRO_AV,
+    ACTIVER_ELECTRO_CORPS,
+    DESACTIVER_ELECTRO_CORPS,
+    ACTIVER_ELECTRO_AR,
+    DESACTIVER_ELECTRO_AR,
     ETAPE_PAR_ETAPE,
-    AVANCER_AUTO,
-    AVANCER_DISTANCE,
-    ARRET_URGENCE
+    COMMANDE_AUTO
+    // SEQUENCE_COMPLETE,
+    // ARRET_COMPLET,
+    // AVANCER_DIST,
+    // AVANCER_AUTO,
+    
 };
 
 enum etat_sequence
@@ -56,7 +65,7 @@ enum etat_sequence
     INCONNU
 };
 
-const float DISTANCE_SEQUENCE = 100;  // !!! A CALCULER EXPÉRIMENTALEMENT
+const float DISTANCE_SEQUENCE = 80;
 
 class Caterpullup
 {
@@ -68,7 +77,7 @@ class Caterpullup
         Patte* patteArriere;
 
         etat_sequence sequence_robot;
-        commande_GUI_enum commande_GUI;
+        int commande_GUI;
         
         // PeripheriqueCom i2c;
 
@@ -77,6 +86,7 @@ class Caterpullup
 
         bool first;
         bool firstInactif;
+        bool arretComplet = false;
 
         bool moteursArretes;
         int action;
@@ -115,7 +125,7 @@ class Caterpullup
         void set_sequence_robot(enum etat_sequence _etat);
         int get_sequence_robot();
 
-        void set_commande_GUI(enum commande_GUI_enum _etat);
+        void set_commande_GUI(int _etat);
         int get_commande_GUI();
 
         void gererEtat();
@@ -131,6 +141,10 @@ class Caterpullup
         void recevoirMessage();
 
         void trouverEtatSequence();
+
+        void setNbSequences(int _nbSequences);
+
+        void setArretComplet(bool _arretComplet);
 
         void faireEtape(enum etat_sequence etat);
 
