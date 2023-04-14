@@ -7,8 +7,8 @@
 #ifndef CORPS_H
 #define CORPS_H
 
-#include "lib\Gabarits\Moteur.h"
-#include "lib\Gabarits\Electroaimant.h"
+//#include "lib\Gabarits\Moteur.h"
+//#include "lib\Gabarits\Electroaimant.h"
 #include "ElectroCPU.h"
 #include "DXL_Corps.h"
 
@@ -29,6 +29,7 @@ class Corps
 
         bool monter();
         bool baisser();
+        bool rapprocher();
         void activerElectro();
         void desactiverElectro();
 

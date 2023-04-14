@@ -54,11 +54,11 @@ bool DXL_Patte::is_movement_finished()
         return true;
     }
     
-    DEBUG_SERIAL.print(id);
-    DEBUG_SERIAL.print("present : ");
-    DEBUG_SERIAL.println(current_angle);
-    DEBUG_SERIAL.print("goal : ");
-    DEBUG_SERIAL.println(goal_angle);
+    //DEBUG_SERIAL.print(id);
+    //DEBUG_SERIAL.print("present : ");
+    //DEBUG_SERIAL.println(current_angle);
+    //DEBUG_SERIAL.print("goal : ");
+    //DEBUG_SERIAL.println(goal_angle);
 
     if(abs(currentAngle() - goal_angle) < 5)
     {

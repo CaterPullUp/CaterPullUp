@@ -14,9 +14,23 @@
 #define digitalWrite(A,B)
 #define digitalRead(A)
 #define pinMode(A,B)
-//#define Dynamixel2Arduino
-//#define dxl(A,B)
-#define DEBUG_SERIAL
+#include "SerialSimul.h"
+
+#define DEBUG_SERIAL (*Serial)
+
+#include <cstdint>
+#include <sys/time.h>
+
+long inline get_time(){
+    struct timeval tp;
+    gettimeofday(&tp, NULL);
+    return (long)tp.tv_sec * 1000L + tp.tv_usec / 1000;
+}
+
+#define millis get_time
+    
 #endif
+
+#define DEBUG_SERIAL Serial
 
 #endif
