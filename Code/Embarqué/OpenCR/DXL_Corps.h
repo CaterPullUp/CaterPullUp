@@ -12,7 +12,9 @@
 #include "Dynamixel.h"
 #include "Moteur.h"
 
+#if defined(ARDUINO_OpenCR)
 using namespace ControlTableItem;
+#endif
 
 #define VITESSE_CORPS 50
 

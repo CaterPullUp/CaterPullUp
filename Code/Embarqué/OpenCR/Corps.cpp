@@ -64,6 +64,7 @@ bool Corps::baisser()
 
     if(monte)
     {
+        DEBUG_SERIAL.println("Start baisse corps");
         ((DXL_Corps *)moteur)->go_to_position(ANGLE_BAISSER);
         monte = false;
 
@@ -72,6 +73,7 @@ bool Corps::baisser()
 
     if(estArrete())
     {
+        DEBUG_SERIAL.println("End baisse corps");
         baisse = true;
         return true;
     }
@@ -82,9 +84,10 @@ bool Corps::baisser()
 bool Corps::rapprocher()
 {
     ((DXL_Corps *)moteur)->go_to_position(ANGLE_RAPPROCHE);
-
+    DEBUG_SERIAL.println("Rapproche corps");
     if(estArrete())
     {
+        DEBUG_SERIAL.println("End rapproche corps");
         return true;
     }
 

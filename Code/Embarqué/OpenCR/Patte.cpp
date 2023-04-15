@@ -34,13 +34,15 @@ bool Patte::etirer()
 {
     if(etire)
     {
-        DEBUG_SERIAL.println("etire");
+        //DEBUG_SERIAL.println("etire");
         return true;
     }
 
     if(replie)
-    {
-        DEBUG_SERIAL.println("replie");      
+    { 
+        DEBUG_SERIAL.print("Patte ");
+        DEBUG_SERIAL.print(((DXL_Patte*)moteur)->getID());
+        DEBUG_SERIAL.println(" etirer");
         ((DXL_Patte *)moteur)->incrementGoalAngle(direction_ == 1 ? EXTEND_MOVEMENT_ANGLE : RETRACT_MOVEMENT_ANGLE);
         ((DXL_Patte *)moteur)->setVitesse();
 
@@ -51,11 +53,13 @@ bool Patte::etirer()
     
     if(estArrete())
     {
-        DEBUG_SERIAL.println("arrete");
+        DEBUG_SERIAL.print("Patte ");
+        DEBUG_SERIAL.print(((DXL_Patte*)moteur)->getID());
+        DEBUG_SERIAL.println(" terminer");   
         etire = true;
         return true;
     }
-            DEBUG_SERIAL.println("rien");
+            //DEBUG_SERIAL.println("rien");
     return false;
 }
 
@@ -68,6 +72,9 @@ bool Patte::replier()
 
     if(etire)
     {
+        DEBUG_SERIAL.print("Patte ");
+        DEBUG_SERIAL.print(((DXL_Patte*)moteur)->getID());
+        DEBUG_SERIAL.println(" replier");
         ((DXL_Patte *)moteur)->incrementGoalAngle(direction_ == 1 ? RETRACT_MOVEMENT_ANGLE : EXTEND_MOVEMENT_ANGLE);
         ((DXL_Patte *)moteur)->setVitesse();
 
@@ -78,6 +85,9 @@ bool Patte::replier()
     
     if(estArrete())
     {
+        DEBUG_SERIAL.print("Patte ");
+        DEBUG_SERIAL.print(((DXL_Patte*)moteur)->getID());
+        DEBUG_SERIAL.println(" terminer");
         replie = true;
         return true;
     }

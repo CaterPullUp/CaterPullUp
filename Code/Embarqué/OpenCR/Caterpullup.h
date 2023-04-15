@@ -9,14 +9,14 @@
 
 #include "Patte.h"
 #include "Corps.h"
-#include "lib\Gabarits\Electroaimant.h"
-#include "lib\Gabarits\Moteur.h"
-#include "lib\Peripheriques\PeripheriqueCom.h"
+//#include "lib\Gabarits\Electroaimant.h"
+//#include "lib\Gabarits\Moteur.h"
+//#include "lib\Peripheriques\PeripheriqueCom.h"
 #include "Dynamixel.h"
 #include "timer.h"
 
-#define MODE_MANUEL 0
-#define MODE_AUTO 1
+#define MODE_MANUEL 1
+#define MODE_AUTO 2
 
 #define AUCUNE 0
 #define REPLIER 1
@@ -25,6 +25,10 @@
 #define BAISSER 4
 #define TERMINER 5
 #define FIN_ETAPE -2
+
+#define PIN_ELECTRO_AVANT 13
+#define PIN_ELECTRO_ARRIERE 12
+#define PIN_ELECTRO_CORPS 14
 
 enum commande_GUI_enum
 {

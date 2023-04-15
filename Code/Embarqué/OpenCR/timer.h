@@ -1,7 +1,8 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
-#include <Arduino.h>
+//#include <Arduino.h>
+#include "Arduino_function.h"
 
 #define INFINITE_REPETITION -1
 

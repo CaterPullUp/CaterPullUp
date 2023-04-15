@@ -351,3 +351,5 @@ MigrationBackup/
 
 # others
 c_cpp_properties.json
+
+*.log
