@@ -26,8 +26,11 @@ Le robot se déplace à l'aide de deux pattes ayant deux degrés de liberté. Il
 <!-- https://youtube.com/shorts/IAFNHkEL4pA?feature=share                https://youtu.be/xv_MGWrIb7o -->
 
 <a href="https://youtube.com/shorts/IAFNHkEL4pA?feature=share
-" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+" target="_blank"><img src="https://user-images.githubusercontent.com/93997878/232250133-6b04f28a-0d83-4c91-bd9e-4a6ea785202f.png" 
+alt="IMAGE ALT TEXT HERE"  border="10" /></a>
+<a href="https://youtu.be/xv_MGWrIb7o
+" target="_blank"><img src="https://user-images.githubusercontent.com/93997878/232250300-230997d2-9676-4dd9-aa2f-3fb49adfd2ac.png" 
+alt="IMAGE ALT TEXT HERE"  border="10" /></a>
 
 ## Comment se retrouver dans le GitHub CaterPullUp
 ### Code
