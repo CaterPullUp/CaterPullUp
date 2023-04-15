@@ -23,8 +23,11 @@ Le robot se déplace à l'aide de deux pattes ayant deux degrés de liberté. Il
 ### Dimensions
 ![DimensionsRobot](https://user-images.githubusercontent.com/93997878/228887112-465a8c42-a3ef-4334-b0ab-079351aa499e.png)
 ### Démonstration du robot en mouvement
-<!-- Insérer la vidéo -->
-[![Nom de la vidéo](lien_de_la_video)](lien_de_la_video)
+<!-- https://youtube.com/shorts/IAFNHkEL4pA?feature=share                https://youtu.be/xv_MGWrIb7o -->
+
+<a href="https://youtube.com/shorts/IAFNHkEL4pA?feature=share
+" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ## Comment se retrouver dans le GitHub CaterPullUp
 ### Code
