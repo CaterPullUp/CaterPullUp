@@ -6,6 +6,7 @@
 
 #ifndef DYNAMIXEL_SIMUL_H
 #define DYNAMIXEL_SIMUL_H
+#ifndef ARDUINO_OpenCR
 
 #include "Arduino_function.h"
 #include <cstdlib>
@@ -48,4 +49,5 @@
             void setGoalVelocity(int id, float vitesse, int mode);
     };
 
+    #endif
     #endif

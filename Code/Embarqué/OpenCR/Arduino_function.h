@@ -16,8 +16,6 @@
 #define pinMode(A,B)
 #include "SerialSimul.h"
 
-//#define DEBUG_SERIAL (*Serial)
-
 #include <cstdint>
 #include <sys/time.h>
 
