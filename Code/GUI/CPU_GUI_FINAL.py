@@ -6,18 +6,14 @@ import socket
 import struct
 import time
 
-# sensorMACAddress = '78:21:84:82:38:a2'
 
+# Changer pour l'adresse mac de l'appareil utilise
 sensorMACAddress = '80:7d:3a:b9:33:e2'
-
-#bloc_envoi = [SOF,COMMANDE,MAC,DIST,PARITE,EOF]
-
-
 port = 1
 
-
+# Creation du socket pour la communication bluetooth
 s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
-s.settimeout(0.5)
+
 
 try:
     s.connect((sensorMACAddress,port))
@@ -27,8 +23,7 @@ except TimeoutError:
 
 else:
     print("Connection successfull")
-    # data = (0xA1B2C3D4).to_bytes(4,"big")
-    # print(data)
+
 
 def macbinaire(mac_adress):
     '''
@@ -63,8 +58,6 @@ def config_bloc_envoi(MAC,commande,DISTANCE=0):
     '''
     SOF=3
     EOF=5
-    #bloc_envoi = [SOF,FONCTION,MAC,DIST,PARITE,EOF]
-    #return (SOF<<127)|(Delim<<126)|(mac_adress<<78)|(Delim<<77)|(Delim<<12)|(Delim<<3)|(Delim<<1)|EOF
     return(SOF<<70)|(commande<<64)|(MAC<<16)|(DISTANCE<<4)|EOF
     
 def modif_parite(msg):
@@ -76,7 +69,6 @@ def modif_parite(msg):
     OUTPUT: 
         msg: Le message pret a etre envoye
     '''
-    #print(msg)
     ind = 0
     msg_bin = bin(msg)
     for i in msg_bin:
@@ -99,8 +91,7 @@ def reconnect():
         Aucun output en soi, le GUI est reconnecte au bluetooth a la sortie de la fonction
     '''
     global s
-    #connected = False
-    connected = True
+    connected = False
     while(not connected):
 
         try:
@@ -115,7 +106,7 @@ def reconnect():
 
 
 
-#Configure
+#Configuration de la fenetre du GUI
 window = Tk()
 window.title('CaterPullUp')
 
@@ -130,7 +121,7 @@ manual_win = Frame(window)
 for frame in (auto_win,manual_win):
     frame.grid(row=0,column=0,sticky='nswe')
 
-Avancer = False
+# Variables pour la gestion du GUI
 etat_electroTop = False
 etat_electroMid = False
 etat_electroBas = False
@@ -541,8 +532,6 @@ def move_patteArriere(img):
                 s.send(msg.to_bytes(9,"big"))
             except socket.error:
                 reconnect()
-    
-
 
 #Partie du haut
 top = Frame(manual_win, width=1000,height=100,bg='#24b700')
@@ -582,9 +571,7 @@ btn_electroArriere.grid(column=2,row=3,sticky=W)
 
 # Textbox input terminal
 text_box_manual = Text(manual_win, height = 45, width = 40, padx = 0, pady = 0,wrap=WORD)
-text_box_manual.insert(INSERT, "Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
-#text_box_manual.tag_configure('center', justify='center')
-#text_box_manual.tag_add('center',1.0,"end")
+text_box_manual.insert(INSERT, "")
 text_box_manual.grid(column=3, row= 1,rowspan=5)
 
 # AUTOMATIC   
@@ -628,7 +615,7 @@ def sequence():
     if en_action:
         messagebox.showerror('Action impossible', "Le robot est déjà en action!", icon='error')
     else:
-        num_fonction = 13
+        num_fonction = 14
         msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
         print(msg)
         try:
@@ -657,7 +644,7 @@ def etapes(progbar_img):
         image = image.resize((int(image.size[0]/2),int(image.size[1]/2)))
         auto_win.new_progbar = ImageTk.PhotoImage(image)
         progbar_img.configure(image=auto_win.new_progbar)
-        num_fonction = 14
+        num_fonction = 13
         msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
         print(msg)
         try:
@@ -732,7 +719,7 @@ def avancer_auto(icon_name,lbl,new_text,distance):
             icon = icon.resize((int(icon.size[0]/2.5),int(icon.size[1]/2.5)))
             auto_win.fleche = ImageTk.PhotoImage(icon)
             icon_name.configure(image=auto_win.fleche)
-            num_fonction = 13
+            num_fonction = 17
             msg = modif_parite(config_bloc_envoi(macbinaire(sensorMACAddress),num_fonction))
             print(msg)
             
@@ -813,28 +800,9 @@ btn_manual.grid(column=0,row=0,sticky=W,padx=20)
 
 # Textbox input terminal
 text_box = Text(auto_win, height = 45, width = 40, padx = 0, pady = 0,wrap=WORD)
-text_box.insert(INSERT, "Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
-#text_box.config(text="Cette boite de texte a pour utilité d'afficher le contenu du terminal directement dans le GUI. Cette boite sera donc une console pour monitor le comportement du code et du robot.")
-#text_box.tag_configure('center', justify='center')
-#text_box.tag_add('center',1.0,"end")
+text_box.insert(INSERT, "")
 text_box.grid(column=3, row= 1,rowspan=7,sticky=W)
 
 show_manual(manual_win)
 
-
-def reception():
-    try:
-        recep = s.recv(72)
-        print(recep)
-
-    except:
-        print('no message')
-    window.after(1000,reception)
-
-window.after(0, reception)
 window.mainloop()
-
-
-
-
-#s.close()
