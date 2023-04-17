@@ -15,10 +15,25 @@ protected:
 
 public:
 
-    //Moteur(int pin);
-
+    /**
+     * @brief Obtention de la variable vitesse
+     * 
+     * @return float vitesse
+     */
     virtual float getVitesse() = 0;
+
+    /**
+     * @brief Obtention de la variable pin
+     * 
+     * @return int pin
+     */
     virtual int getPins() = 0;
+
+    /**
+     * @brief Fixe la variable vitesse
+     * 
+     * @param v 
+     */
     virtual void setVitesse(float v) = 0;
 };
 

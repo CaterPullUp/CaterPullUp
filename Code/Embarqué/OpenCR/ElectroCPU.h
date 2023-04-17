@@ -17,13 +17,45 @@ private:
 
 public:
 
-    // Constructeur de la classe ElectroCPU qui appelle le constructeur de la classe Electroaimant
+    /**
+     * @brief Constructeur de l'objet ElectroCPU
+     * 
+     * @param pin_ 
+     */
     ElectroCPU(int pin_);
 
+    /**
+     * @brief Active l'electroaimant
+     * 
+     */
     void activer();
+
+    /**
+     * @brief Desactive l'electroaimant
+     * 
+     */
     void desactiver();
+
+    /**
+     * @brief Obtention de la variable etat
+     * 
+     * @return true : si l'electroaimant est active
+     * @return false : si l'electroaimant est desactive
+     */
     bool getEtat();
+
+    /**
+     * @brief Obtention de la variable pin
+     * 
+     * @return int pin
+     */
     int getPins();
+
+    /**
+     * @brief Fixe la variable etat
+     * 
+     * @param etat_ 
+     */
     void setEtat(bool etat_);
 };
 

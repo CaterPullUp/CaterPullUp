@@ -84,10 +84,11 @@ class Caterpullup
         //Timer* timer2;
 
     public:
+
         /**
          * @brief Constructeur de l'objet Caterpullup
          * 
-         * @param _mode 
+         * @param _mode : MODE_MANUEL ou MODE_AUTO
          */
         Caterpullup(int _mode);
 
@@ -96,31 +97,80 @@ class Caterpullup
          */
         ~Caterpullup();
 
+        /**
+         * @brief Initialise les pattes et le corps du robot
+         * 
+         */
         void init();
 
         /**
-         * @brief Set the Mode object
+         * @brief Fixe la variable mode
          * 
-         * @param _mode 
+         * @param _mode : MODE_MANUEL ou MODE_AUTO
          */
         void setMode(int _mode);
 
         /**
-         * @brief Get the Mode object
+         * @brief Obtention de la variable mode
          * 
-         * @return int _mode (automatique ou manuel)
+         * @return int _mode : MODE_MANUEL ou MODE_AUTO
          */
         int getMode();
 
+        /**
+         * @brief Fixe la variable sequence_robot
+         * 
+         * @param _etat : etat de la sequence
+         */
         void set_sequence_robot(enum etat_sequence _etat);
+
+        /**
+         * @brief Obtention de la variable etat_sequence
+         * 
+         * @return int etat_sequence : etat de la sequence
+         */
         int get_sequence_robot();
 
+        /**
+         * @brief Fixe la variable commande_GUI
+         * 
+         * @param _etat : etat de la commande GUI
+         */
         void set_commande_GUI(enum commande_GUI_enum _etat);
+
+        /**
+         * @brief Obtention de la variable commande_GUI
+         * 
+         * @return int commande_GUI : etat de la commande GUI
+         */
         int get_commande_GUI();
 
+        /**
+         * @brief Gere la sequence
+         * 
+         */
         void gererEtat();
 
+        /**
+         * @brief Gere les commandes GUI
+         * 
+         */
         void gererGUI();
+
+        /**
+         * @brief Trouve l'etat actuel et replace le robot dans la sequence
+         * 
+         */
+        void trouverEtatSequence();
+
+        /**
+         * @brief Verifie si les moteurs sont arretes
+         * 
+         */
+        void gererMoteurs();
+
+
+        //Fonctions pas utilisées
 
         void sequence();
 
@@ -130,11 +180,8 @@ class Caterpullup
 
         void recevoirMessage();
 
-        void trouverEtatSequence();
-
         void faireEtape(enum etat_sequence etat);
 
-        void gererMoteurs();
 };
 
 
