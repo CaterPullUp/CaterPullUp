@@ -3,6 +3,7 @@
  * @file test.cpp
  * @date 12 avril 2023
 ***/
+#ifndef ARDUINO_OpenCR
 
 #include "Arduino_function.h"
 #include "Caterpullup.h"
@@ -46,6 +47,8 @@ int main(){
         //serialEvent1();
     }
 }
+
+#endif
 /*
 void serialEvent1() {
     struct uart_recu msg = read_uart(RX_BUFF_LENGTH);

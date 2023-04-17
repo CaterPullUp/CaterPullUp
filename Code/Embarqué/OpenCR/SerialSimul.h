@@ -6,6 +6,7 @@
 
 #ifndef SERIAL_SIMUL_H
 #define SERIAL_SIMUL_H
+#ifndef ARDUINO_OpenCR
 
 #include <stdio.h>
 #include <cstdio>
@@ -47,4 +48,5 @@ extern SerialSimul Serial;
 extern SerialSimul Serial1;
 extern SerialSimul Serial3;
 
+#endif
 #endif

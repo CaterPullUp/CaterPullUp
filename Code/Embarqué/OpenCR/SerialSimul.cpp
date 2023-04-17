@@ -3,7 +3,7 @@
  * @file SerialSimul.cpp
  * @date 22 mars 2023
 ***/
-
+#ifndef ARDUINO_OpenCR
 #include "SerialSimul.h"
 
 SerialSimul::SerialSimul(std::string name){
@@ -112,3 +112,4 @@ void SerialSimul::write(int i){}
 SerialSimul Serial("debug");
 SerialSimul Serial1("uart");
 SerialSimul Serial3("dxl");
+#endif

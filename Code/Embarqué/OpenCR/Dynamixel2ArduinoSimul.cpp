@@ -4,6 +4,7 @@
  * @date 22 mars 2023
 ***/
 
+#ifndef ARDUINO_OpenCR
 #include "Dynamixel2ArduinoSimul.h"
 
 //using namespace ControlTableItem;
@@ -50,3 +51,4 @@ float Dynamixel2Arduino::getPresentPosition(int id,int mode){
 void Dynamixel2Arduino::setGoalVelocity(int id, float vitesse, int mode){
     direction[id-1] = vitesse/abs(vitesse);
 }
+#endif
