@@ -5,19 +5,15 @@
 ***/
 
 #include "Corps.h"
-        
-//Corps::Corps(Moteur* _moteur, Electroaimant* _electroaimant)
-//{
-    //moteur = _moteur;
-    //electroaimant = _electroaimant;
-//}
 
-Corps::Corps()
+Corps::Corps(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur)
 {
-    //moteur = new DXL_Corps();
-    electroaimant = new ElectroCPU(12);
-
-    init();
+    moteur = new DXL_Corps(dxl, id_moteur);
+    //ElectroCPU electro = ElectroCPU(pin_electro);      
+    //electroaimant = &electro;
+    electroaimant = new ElectroCPU(pin_electro);
+    monte = false;
+    baisse = false;
 }
 
 Corps::~Corps()
@@ -28,23 +24,71 @@ Corps::~Corps()
 
 void Corps::init()
 {
-    
-}
-
-bool Corps::monter()
-{
-    //completer le code
+    desactiverElectro();
+    ((DXL_Corps *)moteur)->positionInitiale();
 
     monte = true;
     baisse = false;
 }
 
+bool Corps::monter()
+{
+    if(monte)
+    {
+        return true;
+    }
+
+    if(baisse)
+    {
+        ((DXL_Corps *)moteur)->go_to_position(ANGLE_MONTER);
+        baisse = false;
+
+        return false;
+    }
+
+    if(estArrete())
+    {
+        monte = true;
+        return true;
+    }
+
+    return false;
+}
+
 bool Corps::baisser()
 {
-    //compléter le code
+    if(baisse)
+    {
+        return true;
+    }
 
-    monte = false;
-    baisse = true;
+    if(monte)
+    {
+        ((DXL_Corps *)moteur)->go_to_position(ANGLE_BAISSER);
+        monte = false;
+
+        return false;
+    }
+
+    if(estArrete())
+    {
+        baisse = true;
+        return true;
+    }
+
+    return false;
+}
+
+bool Corps::rapprocher()
+{
+    ((DXL_Corps *)moteur)->go_to_position(ANGLE_RAPPROCHE);
+
+    if(estArrete())
+    {
+        return true;
+    }
+
+    return false;
 }
 
 void Corps::activerElectro()
@@ -70,4 +114,9 @@ bool Corps::estBaisse()
 bool Corps::electroActive()
 {
     return electroaimant->getEtat();
+}
+
+bool Corps::estArrete()
+{
+    return ((DXL_Corps *)moteur)->is_movement_finished();
 }

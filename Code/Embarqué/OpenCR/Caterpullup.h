@@ -5,7 +5,7 @@
 ***/
 
 #ifndef CATERPULLUP_H
-#define CATERPPULLUP_H
+#define CATERPULLUP_H
 
 #include "Patte.h"
 #include "Corps.h"
@@ -13,30 +13,49 @@
 #include "lib\Gabarits\Moteur.h"
 #include "lib\Peripheriques\PeripheriqueCom.h"
 #include "Dynamixel.h"
+#include "timer.h"
 
-#define MODE_MANUEL 1
-#define MODE_AUTO 2
+#define MODE_MANUEL 0
+#define MODE_AUTO 1
 
-enum commande_GUI
+#define AUCUNE 0
+#define REPLIER 1
+#define ETIRER 2
+#define MONTER 3
+#define BAISSER 4
+#define TERMINER 5
+#define FIN_ETAPE -2
+
+enum commande_GUI_enum
 {
     INACTIF,
-    ELECTRO_AVANT,
-    ELECTRO_CORPS,
-    ELECTRO_ARRIERE,
-    PATTE_AVANT,
-    PIGNON_CREMAILLERE,
-    PATTE_ARRIERE,
-    SEQUENCE_COMPLETE,
+    ETIRER_PATTE_AV,
+    REPLIER_PATTE_AV,
+    ETIRER_PATTE_AR,
+    REPLIER_PATTE_AR,
+    CORPS_BAISSER,
+    CORPS_MONTER,
+    ACTIVER_ELECTRO_AV,
+    DESACTIVER_ELECTRO_AV,
+    ACTIVER_ELECTRO_CORPS,
+    DESACTIVER_ELECTRO_CORPS,
+    ACTIVER_ELECTRO_AR,
+    DESACTIVER_ELECTRO_AR,
     ETAPE_PAR_ETAPE,
-    AVANCER_AUTO,
-    AVANCER_DISTANCE,
-    ARRET_URGENCE
+    COMMANDE_AUTO
+    // SEQUENCE_COMPLETE,
+    // ARRET_COMPLET,
+    // AVANCER_DIST,
+    // AVANCER_AUTO,
+    
 };
 
 enum etat_sequence
 {
+    INIT,
     PREP_AVANCER_PATTE_AV,
     AVANCER_PATTE_AVANT,
+    PREP_MONTER_CORPS,
     MONTER_CORPS,
     AVANCER_CORPS,
     PREP_AVANCER_PATTE_ARR,
@@ -46,27 +65,33 @@ enum etat_sequence
     INCONNU
 };
 
-const float DISTANCE_SEQUENCE = 13;  // !!! A CALCULER EXPÉRIMENTALEMENT
+const float DISTANCE_SEQUENCE = 80;
 
 class Caterpullup
 {
     private:
-        //Moteur* moteurs[3];
-        //Electroaimant* electroaimants[6];
 
+        Dynamixel2Arduino* dxl;
         Corps* corps;
         Patte* patteAvant;
         Patte* patteArriere;
 
-        etat_sequence etat_sequence;
-        commande_GUI commande_GUI;
+        etat_sequence sequence_robot;
+        int commande_GUI;
         
         // PeripheriqueCom i2c;
 
         int mode;
         int nbSequences;
 
+        bool first;
         bool firstInactif;
+        bool arretComplet = false;
+
+        bool moteursArretes;
+        int action;
+        Timer* timer;
+        //Timer* timer2;
 
     public:
         /**
@@ -97,10 +122,10 @@ class Caterpullup
          */
         int getMode();
 
-        void set_etat_sequence(enum etat_sequence _etat);
-        int get_etat_sequence();
+        void set_sequence_robot(enum etat_sequence _etat);
+        int get_sequence_robot();
 
-        void set_commande_GUI(enum commande_GUI _etat);
+        void set_commande_GUI(int _etat);
         int get_commande_GUI();
 
         void gererEtat();
@@ -117,7 +142,13 @@ class Caterpullup
 
         void trouverEtatSequence();
 
+        void setNbSequences(int _nbSequences);
+
+        void setArretComplet(bool _arretComplet);
+
         void faireEtape(enum etat_sequence etat);
+
+        void gererMoteurs();
 };
 
 #endif

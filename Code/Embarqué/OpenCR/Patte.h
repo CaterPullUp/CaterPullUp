@@ -10,20 +10,25 @@
 #include "lib\Gabarits\Moteur.h"
 #include "lib\Gabarits\Electroaimant.h"
 #include "ElectroCPU.h"
+#include "DXL_Patte.h"
 
 class Patte
 {
     private:
         Moteur* moteur;
         Electroaimant* electroaimant;
-        void init();
+
+        int direction_;
+        
         bool etire;
         bool replie;
 
     public:
         //Patte(Moteur* _moteur, Electroaimant* _electroaimant);
-        Patte();
+        Patte(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur, float zero_position, int direction);
         ~Patte();
+
+        void init();
 
         bool etirer();
         bool replier();
@@ -33,6 +38,10 @@ class Patte
         bool estEtire();
         bool estReplie();
         bool electroActive();
+
+        bool estArrete();
 };
+
+#endif
 
 #endif

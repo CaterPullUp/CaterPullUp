@@ -3,7 +3,6 @@
  * @file Electroaimant.h
  * @date 17 janvier 2023
 ***/
-/*
 
 #ifndef ELECTROAIMANT_H
 #define ELECTROAIMANT_H
@@ -18,16 +17,14 @@ protected:
 public:
 
     Electroaimant(int pin_){};
-    virtual ~Electroaimant();
+    //virtual ~Electroaimant();
 
     virtual void setEtat(bool etat_)=0;
     virtual bool getEtat()=0;
-    virtual int getPin()=0;
+    virtual int getPins()=0;
 
     virtual void activer()=0;
     virtual void desactiver()=0;
 };
 
 #endif
-
-*/

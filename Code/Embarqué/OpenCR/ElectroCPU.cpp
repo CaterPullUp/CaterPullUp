@@ -37,7 +37,7 @@ void ElectroCPU::setEtat(bool etat_)
     etat = etat_;
 }
 
-int ElectroCPU::getPin()
+int ElectroCPU::getPins()
 {
     return pin;
 }

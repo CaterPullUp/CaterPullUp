@@ -1,5 +1,5 @@
 /***
- * @author @MarieClaude1234
+ * @author @MarieClaude1234s
  * @file PeripheriqueCom.h
  * @date 29 janvier 2023
 ***/

@@ -23,7 +23,7 @@ public:
     void activer();
     void desactiver();
     bool getEtat();
-    int getPin();
+    int getPins();
     void setEtat(bool etat_);
 };
 
