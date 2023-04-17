@@ -1,11 +1,8 @@
 #include "Uart.h"
-//#include "Caterpullup.h"
 
 struct uart_recu read_uart(int buff_size){
-  //size_t msg_length = 0;
   uint8_t rx_data;
   if(UART_SERIAL.available() >= 1){
-    //Serial.println("SerialEvent");
     UART_SERIAL.readBytes(&rx_data, 1);
     Serial.println((int) rx_data, BIN);
     return traiter_msg(rx_data);

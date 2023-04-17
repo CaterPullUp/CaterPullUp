@@ -53,11 +53,6 @@ public:
     float currentAngle();
 
     void positionInitiale();
-
-    //void stopMotor();
-    //void stopTorque();
-    //void startTorque();
-
 };
 
 #endif

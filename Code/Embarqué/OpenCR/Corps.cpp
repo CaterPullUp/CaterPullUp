@@ -9,8 +9,6 @@
 Corps::Corps(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur)
 {
     moteur = new DXL_Corps(dxl, id_moteur);
-    //ElectroCPU electro = ElectroCPU(pin_electro);      
-    //electroaimant = &electro;
     electroaimant = new ElectroCPU(pin_electro);
     monte = false;
     baisse = false;

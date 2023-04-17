@@ -1,12 +1,11 @@
 /***
- * @author @couj0902
+ * @author @couj0902 @trudelle200902
  * @file Dynamixel2ArduinoSimul.cpp
  * @date 22 mars 2023
  * 
  * @brief Simule la librairie Dynamixel2Arduino.h permettant de controller des moteurs Dynamixel
 ***/
 
-#ifndef ARDUINO_OpenCR
 #ifndef ARDUINO_OpenCR
 #include "Dynamixel2ArduinoSimul.h"
 

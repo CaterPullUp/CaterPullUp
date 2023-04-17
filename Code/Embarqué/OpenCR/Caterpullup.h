@@ -9,9 +9,6 @@
 
 #include "Patte.h"
 #include "Corps.h"
-//#include "lib\Gabarits\Electroaimant.h"
-//#include "lib\Gabarits\Moteur.h"
-//#include "lib\Peripheriques\PeripheriqueCom.h"
 #include "Dynamixel.h"
 #include "timer.h"
 
@@ -46,12 +43,7 @@ enum commande_GUI_enum
     ACTIVER_ELECTRO_AR,
     DESACTIVER_ELECTRO_AR,
     ETAPE_PAR_ETAPE,
-    COMMANDE_AUTO
-    // SEQUENCE_COMPLETE,
-    // ARRET_COMPLET,
-    // AVANCER_DIST,
-    // AVANCER_AUTO,
-    
+    COMMANDE_AUTO   
 };
 
 enum etat_sequence

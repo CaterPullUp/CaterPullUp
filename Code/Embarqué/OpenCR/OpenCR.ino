@@ -10,13 +10,7 @@
 
 #include "timer.h"
 
-// #define UART_SERIAL Serial1
 #define DEBUG_BAUD_RATE 115200
-// #define RX_BUFF_LENGTH 256
-// #define TX_PERIOD 2000
-
-// void read_uart(byte *rx_data, int buff_size);
-// void send_data();
 
 
 Caterpullup* robot;
@@ -28,10 +22,7 @@ void setup()
     Serial.begin(9600);
     UART_SERIAL.begin(9600);
     DEBUG_SERIAL.begin(DEBUG_BAUD_RATE);
-    // while(!DEBUG_SERIAL);
-    //while(!Serial);
 
-    //robot = Caterpullup(MODE_MANUEL);
     DEBUG_SERIAL.println("start");
     robot = new Caterpullup(MODE_MANUEL);
     robot->init();
@@ -71,16 +62,3 @@ void serialEvent1() {
         Serial.println(msg.parite);
     }
 }
-
-
-// void read_uart(byte *rx_data, int buff_size){
-//   //size_t msg_length = 0;
-//   if(UART_SERIAL.available()){
-//     *rx_data = UART_SERIAL.read();
-//   }
-// }
-
-// void send_data(){
-//   while(!UART_SERIAL.availableForWrite()){}
-//   UART_SERIAL.write(2);
-// }

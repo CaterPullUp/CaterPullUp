@@ -1,7 +1,12 @@
+/***
+ * @author @trudelle200902
+ * @file timer.h
+ * @date 12 avril 2023
+***/
+
 #ifndef TIMER_H_
 #define TIMER_H_
 
-//#include <Arduino.h>
 #include "Arduino_function.h"
 
 #define INFINITE_REPETITION -1
@@ -18,7 +23,7 @@ private:
 
 public:
     Timer();
-    void init(/*void (*callback)(), */unsigned long delay_millis, int nb_rep);
+    void init(unsigned long delay_millis, int nb_rep);
     void start();
     bool update();
     void stop();

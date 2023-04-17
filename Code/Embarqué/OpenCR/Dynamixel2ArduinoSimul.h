@@ -7,7 +7,6 @@
 #ifndef DYNAMIXEL_SIMUL_H
 #define DYNAMIXEL_SIMUL_H
 #ifndef ARDUINO_OpenCR
-#ifndef ARDUINO_OpenCR
 
 #include "Arduino_function.h"
 #include <cstdlib>
@@ -34,7 +33,6 @@
             float goal_vel[NB_MOTEUR];
             float current_pos[NB_MOTEUR];
             float direction[NB_MOTEUR];
-            //float position[NB_MOTEUR];
         public:
             Dynamixel2Arduino(SerialSimul serial, int pin);
             void begin(int baud_rate);
@@ -50,5 +48,5 @@
             void setGoalVelocity(int id, float vitesse, int mode);
     };
 
-    #endif
-    #endif
+#endif
+#endif

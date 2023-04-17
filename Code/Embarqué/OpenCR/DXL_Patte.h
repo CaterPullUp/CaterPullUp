@@ -53,11 +53,6 @@ public:
     int getDirection();
 
     void setVitesse();
-
-    //void stopMotor();
-    //void stopTorque();
-    //void startTorque();
-    //bool getTorque();
     
 };
 

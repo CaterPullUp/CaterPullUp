@@ -111,5 +111,3 @@ SerialSimul Serial("debug");
 SerialSimul Serial1("uart");
 SerialSimul Serial3("dxl");
 #endif
-
-#endif

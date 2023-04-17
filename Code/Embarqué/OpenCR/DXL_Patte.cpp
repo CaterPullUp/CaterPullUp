@@ -6,7 +6,7 @@
 
 #include "DXL_Patte.h"
 
-DXL_Patte::DXL_Patte(Dynamixel2Arduino* dxl_, int id_, float zero_position_, int direction_)// : Moteur(pin)
+DXL_Patte::DXL_Patte(Dynamixel2Arduino* dxl_, int id_, float zero_position_, int direction_)
 {
     id = id_;
     zero_position = zero_position_;
@@ -53,12 +53,6 @@ bool DXL_Patte::is_movement_finished()
     {
         return true;
     }
-    
-    //DEBUG_SERIAL.print(id);
-    //DEBUG_SERIAL.print("present : ");
-    //DEBUG_SERIAL.println(current_angle);
-    //DEBUG_SERIAL.print("goal : ");
-    //DEBUG_SERIAL.println(goal_angle);
 
     if(abs(currentAngle() - goal_angle) < 5)
     {

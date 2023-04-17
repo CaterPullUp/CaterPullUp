@@ -1,5 +1,5 @@
 /***
- * @author @etiger314
+ * @author @etiger314 @trudelle200902
  * @file Arduino_function.h
  * @date 22 mars 2023
 ***/

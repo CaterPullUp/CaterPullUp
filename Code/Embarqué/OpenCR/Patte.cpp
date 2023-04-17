@@ -34,7 +34,6 @@ bool Patte::etirer()
 {
     if(etire)
     {
-        //DEBUG_SERIAL.println("etire");
         return true;
     }
 
@@ -59,7 +58,6 @@ bool Patte::etirer()
         etire = true;
         return true;
     }
-            //DEBUG_SERIAL.println("rien");
     return false;
 }
 

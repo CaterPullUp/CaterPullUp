@@ -3,10 +3,10 @@
 # @file MakeFile
 # @date 12 avril 2023
 #
-all: test clean
+all: test_sequence
 
-test: test.o Caterpullup.o Corps.o DXL_Corps.o Patte.o DXL_Patte.o ElectroCPU.o timer.o Dynamixel2ArduinoSimul.o SerialSimul.o Uart.o
-	g++ -o test test.o Caterpullup.o Corps.o DXL_Corps.o Patte.o DXL_Patte.o ElectroCPU.o timer.o Dynamixel2ArduinoSimul.o SerialSimul.o
+test_sequence: test.o Caterpullup.o Corps.o DXL_Corps.o Patte.o DXL_Patte.o ElectroCPU.o timer.o Dynamixel2ArduinoSimul.o SerialSimul.o Uart.o
+	g++ -o test_sequence.exe test.o Caterpullup.o Corps.o DXL_Corps.o Patte.o DXL_Patte.o ElectroCPU.o timer.o Dynamixel2ArduinoSimul.o SerialSimul.o
 
 test.o: test.cpp Caterpullup.h Patte.h Corps.h Dynamixel.h Dynamixel2ArduinoSimul.h Arduino_function.h SerialSimul.h Uart.h
 	g++ -c test.cpp

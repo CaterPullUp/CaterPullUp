@@ -1,5 +1,5 @@
 /***
- * @author @etiger314
+ * @author @etiger314 @trudelle200902
  * @file Dynamixel.h
  * @date 22 mars 2023
 ***/
@@ -20,19 +20,5 @@
 #define DEBUG_BAUD_RATE 115200
 #define DXL_DIR_PIN 84
 #define DXL_PROTOCOL_VERSION 2.0
-
-//Dynamixel2Arduino* dxl;
-//Dynamixel2Arduino* dxl;// = new Dynamixel2Arduino(DXL_SERIAL, DXL_DIR_PIN);
-
-//Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
-Dynamixel2Arduino* connectDXL();
-
-//Dynamixel2ArduinoSimul* connectDXL();
-/*static void inline connectDXL()
-{
-    dxl = new Dynamixel2Arduino(DXL_SERIAL, DXL_DIR_PIN);
-    dxl->begin(DXL_BAUD_RATE);
-    dxl->setPortProtocolVersion(DXL_PROTOCOL_VERSION);
-}*/
 
 #endif

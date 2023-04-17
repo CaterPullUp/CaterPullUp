@@ -7,8 +7,6 @@
 #ifndef PATTE_H
 #define PATTE_H
 
-//#include "lib\Gabarits\Moteur.h"
-//#include "lib\Gabarits\Electroaimant.h"
 #include "ElectroCPU.h"
 #include "DXL_Patte.h"
 
@@ -24,7 +22,6 @@ class Patte
         bool replie;
 
     public:
-        //Patte(Moteur* _moteur, Electroaimant* _electroaimant);
         Patte(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur, float zero_position, int direction);
         ~Patte();
 
