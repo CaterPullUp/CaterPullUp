@@ -40,5 +40,3 @@ class Patte
 };
 
 #endif
-
-#endif

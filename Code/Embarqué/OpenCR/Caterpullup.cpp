@@ -189,7 +189,6 @@ void Caterpullup::gererGUI()
         break;
     
     default:
-
         break;
     }
 }
