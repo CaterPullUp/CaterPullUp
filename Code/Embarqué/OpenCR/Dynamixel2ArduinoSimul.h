@@ -7,6 +7,7 @@
 #ifndef DYNAMIXEL_SIMUL_H
 #define DYNAMIXEL_SIMUL_H
 #ifndef ARDUINO_OpenCR
+#ifndef ARDUINO_OpenCR
 
 #include "Arduino_function.h"
 #include <cstdlib>

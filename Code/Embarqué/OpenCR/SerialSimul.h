@@ -1,11 +1,12 @@
 /***
  * @author @trudelle200902
- * @file Dynamixel2ArduinoSimul.h
+ * @file SerialSimul.h
  * @date 22 mars 2023
 ***/
 
 #ifndef SERIAL_SIMUL_H
 #define SERIAL_SIMUL_H
+#ifndef ARDUINO_OpenCR
 #ifndef ARDUINO_OpenCR
 
 #include <stdio.h>
@@ -18,17 +19,12 @@
 #include <cstdarg>
 
 #define BIN 0
-//#define Serial1 Serial
-//#define Serial3 Serial
 
 class SerialSimul{
     private:
-        //FILE *fptr;
         char file_name[64];
-        void print_to_file(const char* fmt, ...);
     public:
         SerialSimul(std::string name);
-        ~SerialSimul();
         void begin(int baud_rate);
         void print(std::string str);
         void println(std::string str);
