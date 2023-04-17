@@ -15,8 +15,6 @@ protected:
 
 public:
 
-    //Moteur(int pin);
-
     virtual float getVitesse() = 0;
     virtual int getPins() = 0;
     virtual void setVitesse(float v) = 0;

@@ -7,7 +7,6 @@
 #include "Uart.h"
 
 struct uart_recu read_uart(int buff_size){
-  //size_t msg_length = 0;
   uint8_t rx_data;
   if(UART_SERIAL.available() >= buff_size){
     Serial.println("SerialEvent");

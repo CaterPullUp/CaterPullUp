@@ -6,9 +6,11 @@
 
 #include "DXL_Corps.h"
 
+#if defined(ARDUINO_OpenCR)
 using namespace ControlTableItem;
+#endif
 
-DXL_Corps::DXL_Corps(Dynamixel2Arduino* dxl_, int id_)// : Moteur(pin)
+DXL_Corps::DXL_Corps(Dynamixel2Arduino* dxl_, int id_)
 {
     dxl=dxl_;
     id = id_;
@@ -55,12 +57,6 @@ bool DXL_Corps::is_movement_finished()
     {
         return true;
     }
-
-    DEBUG_SERIAL.print(id);
-    DEBUG_SERIAL.print("present : ");
-    DEBUG_SERIAL.println(current_angle);
-    DEBUG_SERIAL.print("goal : ");
-    DEBUG_SERIAL.println(goal_angle);
     
     if(abs(currentAngle() - goal_angle) < 3)
     {

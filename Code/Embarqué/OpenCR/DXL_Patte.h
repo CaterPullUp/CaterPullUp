@@ -53,7 +53,6 @@ public:
     int getDirection();
 
     void setVitesse();
-
     
 };
 

@@ -7,8 +7,6 @@
 #ifndef CORPS_H
 #define CORPS_H
 
-#include "lib\Gabarits\Moteur.h"
-#include "lib\Gabarits\Electroaimant.h"
 #include "ElectroCPU.h"
 #include "DXL_Corps.h"
 
@@ -21,7 +19,6 @@ class Corps
         bool baisse;
 
     public:
-        //Corps(Moteur* _moteur, Electroaimant* _electroaimant);
         Corps(Dynamixel2Arduino* dxl, int pin_electro, int id_moteur);
         ~Corps();
 

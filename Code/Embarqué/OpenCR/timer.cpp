@@ -1,3 +1,9 @@
+/***
+ * @author @trudelle200902
+ * @file timer.cpp
+ * @date 12 avril 2023
+***/
+
 #include "timer.h"
 
 /**
@@ -20,8 +26,7 @@ Timer::Timer(){
  * @param delay_millis unsigned long qui représente le temps en milliseconde tu timer
  * @param nb_rep nombre de fois que le délais s'exécute -1 pour répeter à l'infini
  */
-void Timer::init(/*void (*callback)(), */unsigned long delay_millis, int nb_rep){
-    //this->callback_ = callback;
+void Timer::init(unsigned long delay_millis, int nb_rep){
     this->delay_ = delay_millis;
     this->nb_rep_ = nb_rep;
 }
@@ -31,11 +36,6 @@ void Timer::init(/*void (*callback)(), */unsigned long delay_millis, int nb_rep)
  * 
  */
 void Timer::start(){
-    /*if(callback_ != NULL){
-        enable_ = true;
-        deadline_ = millis() + delay_;
-        reamining_rep_ = nb_rep_;
-    }*/
     if (!enable_){
         enable_ = true;
         deadline_ = millis() + delay_;
@@ -48,23 +48,7 @@ void Timer::start(){
  * 
  */
 bool Timer::update(){
-    /*
-    if(enable_ && millis() > deadline_ && (reamining_rep_ == -1 || reamining_rep_ > 0)){
-        callback_();
-        if(nb_rep_ != -1){
-            reamining_rep_--;
-        }
-
-        if(reamining_rep_ == 0){
-                stop();
-        }
-        else{
-            deadline_ = millis() + delay_;
-        }
-        
-    }*/
-    if(enable_ && millis() > deadline_/* && (reamining_rep_ == -1 || reamining_rep_ > 0)*/){
-        //callback_();
+    if(enable_ && millis() > deadline_){
         if(nb_rep_ != -1){
             remaining_rep_--;
         }

@@ -13,8 +13,6 @@
 
 class ElectroCPU : public Electroaimant
 {
-private:
-
 public:
 
     // Constructeur de la classe ElectroCPU qui appelle le constructeur de la classe Electroaimant

@@ -22,7 +22,7 @@ void setup()
     UART_SERIAL.begin(9600);
     DEBUG_SERIAL.begin(DEBUG_BAUD_RATE);
 
-    Serial.println("start");
+    DEBUG_SERIAL.println("start");
     robot = new Caterpullup(MODE_MANUEL);
     robot->init();
 
