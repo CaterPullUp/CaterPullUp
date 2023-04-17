@@ -1,10 +1,15 @@
+/***
+ * @author @MarieClaude1234
+ * @file Uart.cpp
+ * @date 12 avril 2023
+***/
+
 #include "Uart.h"
-//#include "Caterpullup.h"
 
 struct uart_recu read_uart(int buff_size){
   //size_t msg_length = 0;
   uint8_t rx_data;
-  if(UART_SERIAL.available() >= 1){
+  if(UART_SERIAL.available() >= buff_size){
     Serial.println("SerialEvent");
     UART_SERIAL.readBytes(&rx_data, 1);
     Serial.println((int) rx_data, BIN);
@@ -15,9 +20,17 @@ struct uart_recu read_uart(int buff_size){
   return retour;
 }
 
-void send_data(){
-  while(!UART_SERIAL.availableForWrite()){}
-  UART_SERIAL.write(2);
+void send_data(Caterpullup* robot){
+    Serial.println("in send data");
+    while(!UART_SERIAL.availableForWrite()){}
+    struct uart_envoi msg = robot->prepMessage();
+
+    uint8_t data[2];
+    data[0] = (msg.SOF << 7) + (msg.mode << 6) + (msg.commande);
+    data[1] = (msg.etape << 5) + (msg.electro1 << 4) + (msg.electro2 << 3) + (msg.electro3 << 2) + (msg.parite) + (msg.END);
+        
+    UART_SERIAL.write(data, 2);
+    Serial.println("message sent");
 }
 
 struct uart_recu traiter_msg(uint8_t data){
