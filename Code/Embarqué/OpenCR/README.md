@@ -22,3 +22,9 @@ Ensuite, la classe ElectroCPU a plusieurs fonctions qui permettent de manipuler 
 - La fonction "**getEtat**" renvoie l'état actuel de l'électro-aimant 
 - La fonction "**setEtat**" permet de définir l'état de l'électro-aimant en utilisant une valeur booléenne.
 - La fonction "**getPin**" renvoie le numéro de pin associé à l'électro-aimant.
+
+### Uart.h
+Le fichier contient les définitions de fonction pour le module UART de l'OpenCr.
+
+### Uart.cpp
+Le fichier contient les descriptions de fonction pour le module UART de l'OpenCr.

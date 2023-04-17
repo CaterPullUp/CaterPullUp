@@ -47,7 +47,7 @@ Le schéma électrique, le schéma d'architecture ainsi que le plan de test dét
 4. Soudez la plaquette électrique de montage à l'aide du schéma électrique dans le dossier électrique et effectuer les branchements nécessaires.
 5. Télécharger le dépôt GitHub sur votre ordinateur
 6. Assurez-vous que la version de votre logiciel Python soit 3.5 ou plus récent
-7. Indiquez l'adresse Mac de votre ESP32 dans le code python.
+7. Indiquez l'adresse MAC de votre ESP32 dans le code python.
 8. Construire et exécuter le code dans l'OpenCr.
 9. Ouvrir l'interface graphique et essayer les différentes fonctions pour déplacer le robot.
 

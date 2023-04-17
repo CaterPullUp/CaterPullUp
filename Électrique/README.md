@@ -25,12 +25,13 @@ Cependant, des problèmes ont été rencontrés, notamment une surchauffe des MO
 ||Activer les sources.|Le gros électroaimant est actif, les autres non. Le courant affiché est autour de 0,26 A. |0,26 A|
 ||Allumez un multimètre et faites toucher précautionneusement le fil de la mise à la terre à un fil noir (0V) du « protoboard ». |||
 ||Trouvez le port sur le « protoboard » étiqueté par un 5 et touchez-le précautionneusement avec la borne positive du multimètre.|La tension affichée devrait être située très près de 5V. |5V|
-|*Fonctionnement de l’intégralité des électroaimants*|Suivre les étapes du test du fonctionnement individuel des électroaimants, mais brancher tous les électroaimants du bloc de 3 ports à la borne positive de la source de 3,3 V. |Le courant devrait être inférieur à 1 A. |0,76 A|
+|*Fonctionnement de l’intégralité des électroaimants*|Suivre les étapes du test du fonctionnement individuel des électroaimants, mais brancher tous les électroaimants du bloc de 3 ports à la borne positive de la source de 3,3 V. |Le courant devrait être inférieur à 6.5 A. |0,76 A|
 |*Fonctionnement des électroaimants avec l’OpenCr branché sur une source*|Brancher la source d’alimentation de l’OpenCr.|||
 ||Brancher les 3 ports des électroaimants du « protoboard » au port correspondant sur l’OpenCr.|||
 ||Changer dans le code le port de l’électroaimant voulant être testé de LOW à HIGH.|||
 ||S’assurer que l’alimentation soit active. Exécuter le code.|Les électroaimants branchés sur les ports mis à HIGH devraient s’activer. Les critères de courant sont les mêmes que les tests avec la source. ||
 
-![CircuitElectriqueProjet](https://user-images.githubusercontent.com/93997878/227017766-c39d5995-d5f2-444b-be57-60133e696879.png)
+
+![schema_electrique (1)](https://user-images.githubusercontent.com/93997878/232518660-2cad18e4-cf45-47c7-8df1-e08e065a7931.png)
 
 
