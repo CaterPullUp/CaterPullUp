@@ -1,7 +1,7 @@
 # CaterPullUp
 <p style="text-align: justify;">
   Le projet de l’équipe CPU vise à améliorer et modifier un projet existant. Il s’agit du robot
-quadrupède pouvant se déplacer sur des surfaces métalliques à la verticale nommé CampUS. Ce
+quadrupède pouvant se déplacer sur des surfaces métalliques à la verticale CampUS (https://github.com/UdeS-GRO/CampUS). Ce
 projet fut réalisé en 2022 par des étudiants de robotique de la promotion 66 de l’Université de
 Sherbrooke. L’idée d’un robot pouvant gravir des surfaces perpendiculaires au sol a plu à notre
 équipe. L’équipe pense pouvoir optimiser la conception du robot pour accomplir une même tâche.
