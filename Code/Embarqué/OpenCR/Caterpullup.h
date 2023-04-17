@@ -9,8 +9,6 @@
 
 #include "Patte.h"
 #include "Corps.h"
-#include "lib\Gabarits\Electroaimant.h"
-#include "lib\Gabarits\Moteur.h"
 #include "lib\Peripheriques\PeripheriqueCom.h"
 #include "Dynamixel.h"
 #include "timer.h"

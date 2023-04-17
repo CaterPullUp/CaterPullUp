@@ -1,0 +1,3 @@
+[submodule "Code/Embarqué/CommunicationESP"]
+	path = Code/Embarqué/CommunicationESP
+	url = https://github.com/MarieClaude1234/CommunicationESP.git
